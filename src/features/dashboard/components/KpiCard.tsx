@@ -32,17 +32,31 @@ export function KpiCard({ title, value, subtitle, icon, color = "primary.main", 
 
   return (
     <Card>
-      <CardContent>
+      <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
         <Box display="flex" justifyContent="space-between" alignItems="flex-start">
-          <Box>
-            <Typography variant="body2" color="text.secondary" gutterBottom>
+          <Box flex={1}>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              gutterBottom
+              sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+            >
               {title}
             </Typography>
-            <Typography variant="h4" fontWeight={600} color={color}>
+            <Typography
+              variant="h4"
+              fontWeight={600}
+              color={color}
+              sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
+            >
               {value}
             </Typography>
             {subtitle && (
-              <Typography variant="caption" color="text.secondary">
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ fontSize: { xs: "0.7rem", sm: "0.75rem" } }}
+              >
                 {subtitle}
               </Typography>
             )}
@@ -50,14 +64,16 @@ export function KpiCard({ title, value, subtitle, icon, color = "primary.main", 
           {icon && (
             <Box
               sx={{
-                width: 48,
-                height: 48,
+                width: { xs: 40, sm: 48 },
+                height: { xs: 40, sm: 48 },
                 borderRadius: 2,
                 backgroundColor: `${color}15`,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 color: color,
+                flexShrink: 0,
+                ml: 1,
               }}
             >
               {icon}

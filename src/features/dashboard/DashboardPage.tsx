@@ -19,7 +19,7 @@ export function DashboardPage() {
     <Box>
       <PageHeader title="Dashboard" subtitle="Visão geral do sistema Villa Paraíso" />
 
-      <Grid container spacing={3}>
+      <Grid container spacing={{ xs: 2, md: 3 }}>
         {/* KPI Cards - Lotes */}
         <Grid size={{ xs: 12, sm: 6, md: 3 }}>
           <KpiCard

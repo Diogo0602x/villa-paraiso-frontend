@@ -18,9 +18,9 @@ interface PageHeaderProps {
 
 export function PageHeader({ title, subtitle, breadcrumbs, action }: PageHeaderProps) {
   return (
-    <Box mb={3}>
+    <Box mb={{ xs: 2, md: 3 }}>
       {breadcrumbs && breadcrumbs.length > 0 && (
-        <Breadcrumbs sx={{ mb: 1 }}>
+        <Breadcrumbs sx={{ mb: 1, fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>
           {breadcrumbs.map((item, index) =>
             item.href ? (
               <MuiLink key={index} component={Link} href={item.href} color="inherit" underline="hover">
@@ -34,18 +34,36 @@ export function PageHeader({ title, subtitle, breadcrumbs, action }: PageHeaderP
           )}
         </Breadcrumbs>
       )}
-      <Box display="flex" justifyContent="space-between" alignItems="center">
+      <Box
+        display="flex"
+        flexDirection={{ xs: "column", sm: "row" }}
+        justifyContent="space-between"
+        alignItems={{ xs: "flex-start", sm: "center" }}
+        gap={{ xs: 2, sm: 0 }}
+      >
         <Box>
-          <Typography variant="h4" component="h1" fontWeight={600}>
+          <Typography
+            variant="h4"
+            component="h1"
+            fontWeight={600}
+            sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
+          >
             {title}
           </Typography>
           {subtitle && (
-            <Typography variant="body1" color="text.secondary" mt={0.5}>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              mt={0.5}
+              sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}
+            >
               {subtitle}
             </Typography>
           )}
         </Box>
-        {action && <Box>{action}</Box>}
+        {action && (
+          <Box sx={{ width: { xs: "100%", sm: "auto" } }}>{action}</Box>
+        )}
       </Box>
     </Box>
   )

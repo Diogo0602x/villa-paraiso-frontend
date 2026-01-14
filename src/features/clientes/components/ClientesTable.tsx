@@ -28,24 +28,36 @@ export function ClientesTable({ clientes }: ClientesTableProps) {
 
   return (
     <Paper elevation={0} sx={{ border: 1, borderColor: "divider" }}>
-      <TableContainer>
-        <Table>
+      <TableContainer
+        sx={{
+          overflowX: "auto",
+          WebkitOverflowScrolling: "touch",
+          "&::-webkit-scrollbar": {
+            height: 8,
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "rgba(0,0,0,0.2)",
+            borderRadius: 4,
+          },
+        }}
+      >
+        <Table sx={{ minWidth: 800 }}>
           <TableHead>
             <TableRow>
-              <TableCell>Nome</TableCell>
-              <TableCell>Contato</TableCell>
-              <TableCell align="center">Vendas</TableCell>
-              <TableCell>Valor Total</TableCell>
-              <TableCell>Pago</TableCell>
-              <TableCell>Pendente</TableCell>
-              <TableCell align="right">Ações</TableCell>
+              <TableCell sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Nome</TableCell>
+              <TableCell sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Contato</TableCell>
+              <TableCell align="center" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Vendas</TableCell>
+              <TableCell sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Valor Total</TableCell>
+              <TableCell sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Pago</TableCell>
+              <TableCell sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Pendente</TableCell>
+              <TableCell align="right" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Ações</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {clientes.map((cliente) => (
               <TableRow key={cliente.nome} hover>
-                <TableCell>
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
                     <Typography variant="body2" fontWeight={500}>
                       {cliente.nome}
                     </Typography>
@@ -56,16 +68,16 @@ export function ClientesTable({ clientes }: ClientesTableProps) {
                     )}
                   </Box>
                   {cliente.cpf && (
-                    <Typography variant="caption" color="text.secondary">
+                    <Typography variant="caption" color="text.secondary" sx={{ fontSize: { xs: "0.7rem", sm: "0.75rem" } }}>
                       CPF: {cliente.cpf}
                     </Typography>
                   )}
                 </TableCell>
-                <TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                   <Box>
                     {cliente.telefone && <Typography variant="body2">{cliente.telefone}</Typography>}
                     {cliente.email && (
-                      <Typography variant="caption" color="text.secondary">
+                      <Typography variant="caption" color="text.secondary" sx={{ fontSize: { xs: "0.7rem", sm: "0.75rem" } }}>
                         {cliente.email}
                       </Typography>
                     )}
@@ -76,20 +88,20 @@ export function ClientesTable({ clientes }: ClientesTableProps) {
                     )}
                   </Box>
                 </TableCell>
-                <TableCell align="center">
-                  <Chip label={cliente.totalVendas} size="small" />
+                <TableCell align="center" sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                  <Chip label={cliente.totalVendas} size="small" sx={{ fontSize: { xs: "0.7rem", sm: "0.75rem" } }} />
                 </TableCell>
-                <TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                   <Typography variant="body2" fontWeight={500}>
                     {formatCurrency(cliente.valorTotal)}
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                   <Typography variant="body2" color="success.main">
                     {formatCurrency(cliente.valorPago)}
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                   <Typography
                     variant="body2"
                     color={cliente.parcelasAtrasadas > 0 ? "error.main" : "warning.main"}
@@ -98,11 +110,12 @@ export function ClientesTable({ clientes }: ClientesTableProps) {
                     {formatCurrency(cliente.valorPendente)}
                   </Typography>
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="right" sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                   <Tooltip title="Ver Detalhes">
                     <IconButton
                       size="small"
                       onClick={() => router.push(`/clientes/${encodeURIComponent(cliente.nome)}`)}
+                      sx={{ minWidth: { xs: 32, sm: 40 }, minHeight: { xs: 32, sm: 40 } }}
                     >
                       <Visibility fontSize="small" />
                     </IconButton>

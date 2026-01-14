@@ -81,9 +81,9 @@ export function VendasPageClient() {
       />
 
       {/* Filtros */}
-      <Card sx={{ mb: 3 }}>
-        <CardContent>
-          <Grid container spacing={2}>
+      <Card sx={{ mb: { xs: 2, md: 3 } }}>
+        <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+          <Grid container spacing={{ xs: 1.5, md: 2 }}>
             <Grid size={{ xs: 12, md: 4 }}>
               <FormControl fullWidth>
                 <InputLabel>Setor</InputLabel>
@@ -141,24 +141,24 @@ export function VendasPageClient() {
       </Card>
 
       {/* Estatísticas */}
-      <Grid container spacing={3} sx={{ mb: 3 }}>
+      <Grid container spacing={{ xs: 2, md: 3 }} sx={{ mb: { xs: 2, md: 3 } }}>
         <Grid size={{ xs: 12, md: 6 }}>
           <Card>
-            <CardContent>
-              <Typography color="text.secondary" variant="body2" gutterBottom>
+            <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+              <Typography color="text.secondary" variant="body2" gutterBottom sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>
                 Total de Vendas
               </Typography>
-              <Typography variant="h4">{totalVendas}</Typography>
+              <Typography variant="h4" sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}>{totalVendas}</Typography>
             </CardContent>
           </Card>
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
           <Card>
-            <CardContent>
-              <Typography color="text.secondary" variant="body2" gutterBottom>
+            <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+              <Typography color="text.secondary" variant="body2" gutterBottom sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>
                 Valor Total Vendido
               </Typography>
-              <Typography variant="h4">{formatCurrency(valorTotal)}</Typography>
+              <Typography variant="h4" sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}>{formatCurrency(valorTotal)}</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -175,47 +175,112 @@ export function VendasPageClient() {
         <Alert severity="info">Nenhuma venda encontrada.</Alert>
       ) : (
         <Card>
-          <CardContent>
-            <Box sx={{ overflowX: "auto" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                <thead>
-                  <tr style={{ borderBottom: "1px solid #e0e0e0" }}>
-                    <th style={{ textAlign: "left", padding: "12px" }}>Lote</th>
-                    <th style={{ textAlign: "left", padding: "12px" }}>Setor</th>
-                    <th style={{ textAlign: "left", padding: "12px" }}>Comprador</th>
-                    <th style={{ textAlign: "right", padding: "12px" }}>Valor Total</th>
-                    <th style={{ textAlign: "left", padding: "12px" }}>Forma Pagamento</th>
-                    <th style={{ textAlign: "right", padding: "12px" }}>Entrada</th>
-                    <th style={{ textAlign: "center", padding: "12px" }}>Ações</th>
-                  </tr>
-                </thead>
-                <tbody>
+          <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+            <Box
+              sx={{
+                overflowX: "auto",
+                overflowY: "visible",
+                WebkitOverflowScrolling: "touch",
+                "&::-webkit-scrollbar": {
+                  height: 8,
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  backgroundColor: "rgba(0,0,0,0.2)",
+                  borderRadius: 4,
+                },
+              }}
+            >
+              <Box component="table" sx={{ width: "100%", minWidth: 800, borderCollapse: "collapse" }}>
+                <Box component="thead">
+                  <Box component="tr" sx={{ borderBottom: "1px solid", borderColor: "divider" }}>
+                    <Box
+                      component="th"
+                      sx={{ textAlign: "left", padding: { xs: "8px", sm: "12px" }, fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                    >
+                      Lote
+                    </Box>
+                    <Box
+                      component="th"
+                      sx={{ textAlign: "left", padding: { xs: "8px", sm: "12px" }, fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                    >
+                      Setor
+                    </Box>
+                    <Box
+                      component="th"
+                      sx={{ textAlign: "left", padding: { xs: "8px", sm: "12px" }, fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                    >
+                      Comprador
+                    </Box>
+                    <Box
+                      component="th"
+                      sx={{ textAlign: "right", padding: { xs: "8px", sm: "12px" }, fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                    >
+                      Valor Total
+                    </Box>
+                    <Box
+                      component="th"
+                      sx={{ textAlign: "left", padding: { xs: "8px", sm: "12px" }, fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                    >
+                      Forma Pagamento
+                    </Box>
+                    <Box
+                      component="th"
+                      sx={{ textAlign: "right", padding: { xs: "8px", sm: "12px" }, fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                    >
+                      Entrada
+                    </Box>
+                    <Box
+                      component="th"
+                      sx={{ textAlign: "center", padding: { xs: "8px", sm: "12px" }, fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                    >
+                      Ações
+                    </Box>
+                  </Box>
+                </Box>
+                <Box component="tbody">
                   {vendas.map((venda) => (
-                    <tr key={venda.id} style={{ borderBottom: "1px solid #f0f0f0" }}>
-                      <td style={{ padding: "12px" }}>
-                        <Typography fontWeight="medium">{venda.numero}</Typography>
-                      </td>
-                      <td style={{ padding: "12px" }}>
-                        {venda.setor?.nome || "-"}
-                      </td>
-                      <td style={{ padding: "12px" }}>
-                        {venda.comprador || "-"}
-                      </td>
-                      <td style={{ padding: "12px", textAlign: "right" }}>
-                        {venda.valor_total_venda ? formatCurrency(venda.valor_total_venda) : "-"}
-                      </td>
-                      <td style={{ padding: "12px" }}>
-                        {venda.forma_pagamento || "-"}
-                      </td>
-                      <td style={{ padding: "12px", textAlign: "right" }}>
-                        {venda.entrada_venda ? formatCurrency(venda.entrada_venda) : "-"}
-                      </td>
-                      <td style={{ padding: "12px", textAlign: "center" }}>
-                        <Stack direction="row" spacing={1} justifyContent="center">
+                    <Box
+                      key={venda.id}
+                      component="tr"
+                      sx={{ borderBottom: "1px solid", borderColor: "divider" }}
+                    >
+                      <Box component="td" sx={{ padding: { xs: "8px", sm: "12px" } }}>
+                        <Typography fontWeight="medium" sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                          {venda.numero}
+                        </Typography>
+                      </Box>
+                      <Box component="td" sx={{ padding: { xs: "8px", sm: "12px" } }}>
+                        <Typography sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                          {venda.setor?.nome || "-"}
+                        </Typography>
+                      </Box>
+                      <Box component="td" sx={{ padding: { xs: "8px", sm: "12px" } }}>
+                        <Typography sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                          {venda.comprador || "-"}
+                        </Typography>
+                      </Box>
+                      <Box component="td" sx={{ padding: { xs: "8px", sm: "12px" }, textAlign: "right" }}>
+                        <Typography sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                          {venda.valor_total_venda ? formatCurrency(venda.valor_total_venda) : "-"}
+                        </Typography>
+                      </Box>
+                      <Box component="td" sx={{ padding: { xs: "8px", sm: "12px" } }}>
+                        <Typography sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                          {venda.forma_pagamento || "-"}
+                        </Typography>
+                      </Box>
+                      <Box component="td" sx={{ padding: { xs: "8px", sm: "12px" }, textAlign: "right" }}>
+                        <Typography sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                          {venda.entrada_venda ? formatCurrency(venda.entrada_venda) : "-"}
+                        </Typography>
+                      </Box>
+                      <Box component="td" sx={{ padding: { xs: "8px", sm: "12px" }, textAlign: "center" }}>
+                        <Stack direction="row" spacing={0.5} justifyContent="center" flexWrap="wrap">
                           <Tooltip title="Ver Detalhes">
                             <IconButton
                               size="small"
                               onClick={() => router.push(`/vendas/${venda.id}`)}
+                              sx={{ minWidth: { xs: 32, sm: 40 }, minHeight: { xs: 32, sm: 40 } }}
                             >
                               <VisibilityIcon fontSize="small" />
                             </IconButton>
@@ -224,6 +289,7 @@ export function VendasPageClient() {
                             <IconButton
                               size="small"
                               onClick={() => router.push(`/vendas/${venda.id}/editar`)}
+                              sx={{ minWidth: { xs: 32, sm: 40 }, minHeight: { xs: 32, sm: 40 } }}
                             >
                               <EditIcon fontSize="small" />
                             </IconButton>
@@ -233,16 +299,17 @@ export function VendasPageClient() {
                               size="small"
                               color="error"
                               onClick={() => setVendaToDelete(venda)}
+                              sx={{ minWidth: { xs: 32, sm: 40 }, minHeight: { xs: 32, sm: 40 } }}
                             >
                               <DeleteIcon fontSize="small" />
                             </IconButton>
                           </Tooltip>
                         </Stack>
-                      </td>
-                    </tr>
+                      </Box>
+                    </Box>
                   ))}
-                </tbody>
-              </table>
+                </Box>
+              </Box>
             </Box>
           </CardContent>
         </Card>

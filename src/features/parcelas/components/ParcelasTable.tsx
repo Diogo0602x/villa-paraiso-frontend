@@ -14,6 +14,7 @@ import {
   Chip,
   Box,
   Typography,
+  Stack,
 } from "@mui/material"
 import { Visibility, Payment, Edit } from "@mui/icons-material"
 import { useRouter } from "next/navigation"
@@ -48,8 +49,20 @@ export function ParcelasTable({
 
   return (
     <Paper elevation={0} sx={{ border: 1, borderColor: "divider" }}>
-      <TableContainer>
-        <Table>
+      <TableContainer
+        sx={{
+          overflowX: "auto",
+          WebkitOverflowScrolling: "touch",
+          "&::-webkit-scrollbar": {
+            height: 8,
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "rgba(0,0,0,0.2)",
+            borderRadius: 4,
+          },
+        }}
+      >
+        <Table sx={{ minWidth: 800 }}>
           <TableHead>
             <TableRow>
               <TableCell>Parcela</TableCell>
@@ -69,12 +82,12 @@ export function ParcelasTable({
                   bgcolor: isOverdue(parcela) ? "error.50" : undefined,
                 }}
               >
-                <TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                   <Typography variant="body2" fontWeight={500}>
                     {parcela.numeroParcela}ª Parcela
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                   <Box>
                     <Typography variant="body2" fontWeight={500}>
                       {parcela.venda?.lote?.setor?.nome} - Lote {parcela.venda?.lote?.numero}
@@ -84,38 +97,53 @@ export function ParcelasTable({
                     </Typography>
                   </Box>
                 </TableCell>
-                <TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                   <Typography variant="body2" fontWeight={500}>
                     {formatCurrency(parcela.valor)}
                   </Typography>
                 </TableCell>
-                <TableCell>
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
                     <Typography variant="body2">{formatDate(parcela.dataVencimento)}</Typography>
                     {isOverdue(parcela) && <Chip label="Atrasada" color="error" size="small" />}
                   </Box>
                 </TableCell>
-                <TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                   <StatusChip type="parcela" status={parcela.status} />
                 </TableCell>
-                <TableCell align="right">
-                  <Tooltip title="Ver Venda">
-                    <IconButton size="small" onClick={() => router.push(`/vendas/${parcela.vendaId}`)}>
-                      <Visibility fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title="Editar Vencimento">
-                    <IconButton size="small" onClick={() => onEditParcela(parcela)}>
-                      <Edit fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                  {parcela.status !== StatusParcela.PAGA && (
-                    <Tooltip title="Registrar Pagamento">
-                      <IconButton size="small" color="primary" onClick={() => onRegisterPayment(parcela)}>
-                        <Payment fontSize="small" />
+                <TableCell align="right" sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                  <Stack direction="row" spacing={0.5} justifyContent="flex-end" flexWrap="wrap">
+                    <Tooltip title="Ver Venda">
+                      <IconButton
+                        size="small"
+                        onClick={() => router.push(`/vendas/${parcela.vendaId}`)}
+                        sx={{ minWidth: { xs: 32, sm: 40 }, minHeight: { xs: 32, sm: 40 } }}
+                      >
+                        <Visibility fontSize="small" />
                       </IconButton>
                     </Tooltip>
-                  )}
+                    <Tooltip title="Editar Vencimento">
+                      <IconButton
+                        size="small"
+                        onClick={() => onEditParcela(parcela)}
+                        sx={{ minWidth: { xs: 32, sm: 40 }, minHeight: { xs: 32, sm: 40 } }}
+                      >
+                        <Edit fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                    {parcela.status !== StatusParcela.PAGA && (
+                      <Tooltip title="Registrar Pagamento">
+                        <IconButton
+                          size="small"
+                          color="primary"
+                          onClick={() => onRegisterPayment(parcela)}
+                          sx={{ minWidth: { xs: 32, sm: 40 }, minHeight: { xs: 32, sm: 40 } }}
+                        >
+                          <Payment fontSize="small" />
+                        </IconButton>
+                      </Tooltip>
+                    )}
+                  </Stack>
                 </TableCell>
               </TableRow>
             ))}

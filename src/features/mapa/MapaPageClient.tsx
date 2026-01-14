@@ -72,13 +72,13 @@ export function MapaPageClient() {
   }, [kmlUrls, setoresSelecionados, filters.kmlGeralSelecionado])
 
   return (
-    <Box sx={{ height: "calc(100vh - 140px)", display: "flex", flexDirection: "column" }}>
+    <Box sx={{ minHeight: { xs: "auto", md: "calc(100vh - 140px)" }, display: "flex", flexDirection: "column" }}>
       <PageHeader title="Mapa" subtitle="Visualização interativa dos lotes" />
 
-      <Grid container spacing={2} sx={{ flex: 1, minHeight: 0 }}>
+      <Grid container spacing={{ xs: 1.5, md: 2 }} sx={{ flex: 1, minHeight: 0 }}>
         {/* Sidebar */}
         <Grid size={{ xs: 12, md: 3 }}>
-          <Stack spacing={2}>
+          <Stack spacing={{ xs: 1.5, md: 2 }}>
             {/* Filters */}
             <MapFilters 
               filters={filters} 
@@ -92,7 +92,7 @@ export function MapaPageClient() {
         </Grid>
 
         {/* Map */}
-        <Grid size={{ xs: 12, md: 9 }} sx={{ height: { xs: 400, md: "100%" } }}>
+        <Grid size={{ xs: 12, md: 9 }} sx={{ height: { xs: 400, md: "100%" }, minHeight: { xs: 400, md: 500 } }}>
           {shouldLoadKml ? (
             <GoogleMapComponent
               kmlUrls={kmlUrls}

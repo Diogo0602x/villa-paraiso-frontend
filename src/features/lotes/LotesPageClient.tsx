@@ -103,7 +103,7 @@ export function LotesPageClient() {
   }
 
   return (
-    <Box sx={{ height: "calc(100vh - 140px)", display: "flex", flexDirection: "column" }}>
+    <Box sx={{ minHeight: { xs: "auto", md: "calc(100vh - 140px)" }, display: "flex", flexDirection: "column" }}>
       <PageHeader title="Lotes" subtitle="Gerenciamento de lotes" />
 
       {/* Resumo */}
@@ -112,14 +112,14 @@ export function LotesPageClient() {
           <CircularProgress />
         </Box>
       ) : resumo ? (
-        <Grid container spacing={2} sx={{ mb: 3 }}>
+        <Grid container spacing={{ xs: 1.5, md: 2 }} sx={{ mb: { xs: 2, md: 3 } }}>
           <Grid size={{ xs: 12, sm: 6, md: 2.4 }}>
             <Card>
-              <CardContent>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
+              <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+                <Typography variant="body2" color="text.secondary" gutterBottom sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>
                   Total
                 </Typography>
-                <Typography variant="h5" fontWeight="bold">
+                <Typography variant="h5" fontWeight="bold" sx={{ fontSize: { xs: "1.25rem", sm: "1.5rem" } }}>
                   {resumo.total}
                 </Typography>
               </CardContent>
@@ -127,11 +127,11 @@ export function LotesPageClient() {
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 2.4 }}>
             <Card>
-              <CardContent>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
+              <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+                <Typography variant="body2" color="text.secondary" gutterBottom sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>
                   Disponíveis
                 </Typography>
-                <Typography variant="h5" fontWeight="bold" color="success.main">
+                <Typography variant="h5" fontWeight="bold" color="success.main" sx={{ fontSize: { xs: "1.25rem", sm: "1.5rem" } }}>
                   {resumo.disponiveis}
                 </Typography>
               </CardContent>
@@ -139,11 +139,11 @@ export function LotesPageClient() {
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 2.4 }}>
             <Card>
-              <CardContent>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
+              <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+                <Typography variant="body2" color="text.secondary" gutterBottom sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>
                   Reservados
                 </Typography>
-                <Typography variant="h5" fontWeight="bold" color="warning.main">
+                <Typography variant="h5" fontWeight="bold" color="warning.main" sx={{ fontSize: { xs: "1.25rem", sm: "1.5rem" } }}>
                   {resumo.reservados}
                 </Typography>
               </CardContent>
@@ -151,11 +151,11 @@ export function LotesPageClient() {
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 2.4 }}>
             <Card>
-              <CardContent>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
+              <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+                <Typography variant="body2" color="text.secondary" gutterBottom sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>
                   Vendidos
                 </Typography>
-                <Typography variant="h5" fontWeight="bold" color="error.main">
+                <Typography variant="h5" fontWeight="bold" color="error.main" sx={{ fontSize: { xs: "1.25rem", sm: "1.5rem" } }}>
                   {resumo.vendidos}
                 </Typography>
               </CardContent>
@@ -163,11 +163,11 @@ export function LotesPageClient() {
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 2.4 }}>
             <Card>
-              <CardContent>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
+              <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+                <Typography variant="body2" color="text.secondary" gutterBottom sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>
                   Indisponíveis
                 </Typography>
-                <Typography variant="h5" fontWeight="bold" color="text.secondary">
+                <Typography variant="h5" fontWeight="bold" color="text.secondary" sx={{ fontSize: { xs: "1.25rem", sm: "1.5rem" } }}>
                   {resumo.indisponiveis}
                 </Typography>
               </CardContent>
@@ -177,8 +177,8 @@ export function LotesPageClient() {
       ) : null}
 
       {/* Filtros Avançados */}
-      <Card sx={{ mb: 3 }}>
-        <CardContent>
+      <Card sx={{ mb: { xs: 2, md: 3 } }}>
+        <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
           <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
               Filtros
@@ -194,7 +194,7 @@ export function LotesPageClient() {
               Novo Lote
             </Button>
           </Stack>
-          <Grid container spacing={2}>
+          <Grid container spacing={{ xs: 1.5, md: 2 }}>
             <Grid size={{ xs: 12, md: 3 }}>
               <TextField
                 fullWidth
@@ -255,7 +255,7 @@ export function LotesPageClient() {
               </FormControl>
             </Grid>
             <Grid size={{ xs: 12, md: 3 }}>
-              <Stack direction="row" spacing={2}>
+              <Stack direction={{ xs: "column", sm: "row" }} spacing={{ xs: 1, sm: 2 }}>
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -300,29 +300,42 @@ export function LotesPageClient() {
           <CircularProgress />
         </Box>
       ) : lotes && lotes.length > 0 ? (
-        <TableContainer component={Paper}>
-          <Table>
+        <TableContainer
+          component={Paper}
+          sx={{
+            overflowX: "auto",
+            WebkitOverflowScrolling: "touch",
+            "&::-webkit-scrollbar": {
+              height: 8,
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "rgba(0,0,0,0.2)",
+              borderRadius: 4,
+            },
+          }}
+        >
+          <Table sx={{ minWidth: 700 }}>
             <TableHead>
               <TableRow>
-                <TableCell>Número</TableCell>
-                <TableCell>Setor</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell align="right">Área</TableCell>
-                <TableCell align="center">Água</TableCell>
-                <TableCell align="center">BR-060</TableCell>
-                <TableCell align="center">Ações</TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Número</TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Setor</TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Status</TableCell>
+                <TableCell align="right" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Área</TableCell>
+                <TableCell align="center" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Água</TableCell>
+                <TableCell align="center" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>BR-060</TableCell>
+                <TableCell align="center" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Ações</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {lotes.map((lote) => (
                 <TableRow key={lote.id} hover>
-                  <TableCell>
+                  <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                     <Typography fontWeight="medium">{lote.numero}</Typography>
                   </TableCell>
-                  <TableCell>
+                  <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                     <Typography variant="body2">{lote.setor?.nome || "-"}</Typography>
                   </TableCell>
-                  <TableCell>
+                  <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                     <Chip
                       label={StatusLoteLabels[lote.status]}
                       size="small"
@@ -330,40 +343,58 @@ export function LotesPageClient() {
                         bgcolor: StatusLoteColors[lote.status],
                         color: "white",
                         fontWeight: "medium",
+                        fontSize: { xs: "0.7rem", sm: "0.75rem" },
                       }}
                     />
                   </TableCell>
-                  <TableCell align="right">{formatArea(lote.area)}</TableCell>
-                  <TableCell align="center">
+                  <TableCell align="right" sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                    {formatArea(lote.area)}
+                  </TableCell>
+                  <TableCell align="center" sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                     {lote.tem_acesso_agua ? (
-                      <Chip label="Sim" size="small" color="success" />
+                      <Chip label="Sim" size="small" color="success" sx={{ fontSize: { xs: "0.7rem", sm: "0.75rem" } }} />
                     ) : (
-                      <Chip label="Não" size="small" color="default" />
+                      <Chip label="Não" size="small" color="default" sx={{ fontSize: { xs: "0.7rem", sm: "0.75rem" } }} />
                     )}
                   </TableCell>
-                  <TableCell align="center">
+                  <TableCell align="center" sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                     {lote.frente_br060 ? (
-                      <Chip label="Sim" size="small" color="info" />
+                      <Chip label="Sim" size="small" color="info" sx={{ fontSize: { xs: "0.7rem", sm: "0.75rem" } }} />
                     ) : (
-                      <Chip label="Não" size="small" color="default" />
+                      <Chip label="Não" size="small" color="default" sx={{ fontSize: { xs: "0.7rem", sm: "0.75rem" } }} />
                     )}
                   </TableCell>
-                  <TableCell align="center">
-                    <Stack direction="row" spacing={1} justifyContent="center">
+                  <TableCell align="center" sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                    <Stack direction="row" spacing={0.5} justifyContent="center" flexWrap="wrap">
                       <Tooltip title="Editar">
-                        <IconButton size="small" onClick={() => handleEdit(lote)} color="primary">
+                        <IconButton
+                          size="small"
+                          onClick={() => handleEdit(lote)}
+                          color="primary"
+                          sx={{ minWidth: { xs: 32, sm: 40 }, minHeight: { xs: 32, sm: 40 } }}
+                        >
                           <EditIcon fontSize="small" />
                         </IconButton>
                       </Tooltip>
                       {lote.status !== StatusLote.VENDIDO && (
                         <Tooltip title="Registrar Venda">
-                          <IconButton size="small" onClick={() => handleRegistrarVenda(lote)} color="success">
+                          <IconButton
+                            size="small"
+                            onClick={() => handleRegistrarVenda(lote)}
+                            color="success"
+                            sx={{ minWidth: { xs: 32, sm: 40 }, minHeight: { xs: 32, sm: 40 } }}
+                          >
                             <ShoppingCartIcon fontSize="small" />
                           </IconButton>
                         </Tooltip>
                       )}
                       <Tooltip title="Deletar">
-                        <IconButton size="small" onClick={() => handleDelete(lote)} color="error">
+                        <IconButton
+                          size="small"
+                          onClick={() => handleDelete(lote)}
+                          color="error"
+                          sx={{ minWidth: { xs: 32, sm: 40 }, minHeight: { xs: 32, sm: 40 } }}
+                        >
                           <DeleteIcon fontSize="small" />
                         </IconButton>
                       </Tooltip>

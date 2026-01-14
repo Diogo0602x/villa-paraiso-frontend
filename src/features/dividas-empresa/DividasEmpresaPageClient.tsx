@@ -147,7 +147,7 @@ export function DividasEmpresaPageClient() {
   }
 
   return (
-    <Box sx={{ height: "calc(100vh - 140px)", display: "flex", flexDirection: "column" }}>
+    <Box sx={{ minHeight: { xs: "auto", md: "calc(100vh - 140px)" }, display: "flex", flexDirection: "column" }}>
       <PageHeader title="Dívidas da Empresa" subtitle="Controle de dívidas e obrigações" />
 
       {/* Resumo Financeiro */}
@@ -156,14 +156,24 @@ export function DividasEmpresaPageClient() {
           <CircularProgress />
         </Box>
       ) : resumo ? (
-        <Grid container spacing={2} sx={{ mb: 3 }}>
+        <Grid container spacing={{ xs: 1.5, md: 2 }} sx={{ mb: { xs: 2, md: 3 } }}>
           <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Card>
-              <CardContent>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
+              <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  gutterBottom
+                  sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                >
                   Valor Total
                 </Typography>
-                <Typography variant="h5" fontWeight="bold" color="error.main">
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  color="error.main"
+                  sx={{ fontSize: { xs: "1.25rem", sm: "1.5rem" } }}
+                >
                   {formatCurrency(resumo.valor_total)}
                 </Typography>
               </CardContent>
@@ -171,11 +181,21 @@ export function DividasEmpresaPageClient() {
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Card>
-              <CardContent>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
+              <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  gutterBottom
+                  sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                >
                   Valor Pago
                 </Typography>
-                <Typography variant="h5" fontWeight="bold" color="success.main">
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  color="success.main"
+                  sx={{ fontSize: { xs: "1.25rem", sm: "1.5rem" } }}
+                >
                   {formatCurrency(resumo.valor_pago)}
                 </Typography>
               </CardContent>
@@ -183,11 +203,21 @@ export function DividasEmpresaPageClient() {
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Card>
-              <CardContent>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
+              <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  gutterBottom
+                  sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                >
                   Valor a Pagar
                 </Typography>
-                <Typography variant="h5" fontWeight="bold" color="warning.main">
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  color="warning.main"
+                  sx={{ fontSize: { xs: "1.25rem", sm: "1.5rem" } }}
+                >
                   {formatCurrency(resumo.valor_a_pagar)}
                 </Typography>
               </CardContent>
@@ -195,11 +225,16 @@ export function DividasEmpresaPageClient() {
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 3 }}>
             <Card>
-              <CardContent>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
+              <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  gutterBottom
+                  sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+                >
                   % Pago
                 </Typography>
-                <Typography variant="h5" fontWeight="bold">
+                <Typography variant="h5" fontWeight="bold" sx={{ fontSize: { xs: "1.25rem", sm: "1.5rem" } }}>
                   {resumo.percentual_pago?.toFixed(1) ?? "0.0"}%
                 </Typography>
               </CardContent>
@@ -209,10 +244,15 @@ export function DividasEmpresaPageClient() {
       ) : null}
 
       {/* Filtros Avançados */}
-      <Card sx={{ mb: 3 }}>
-        <CardContent>
-          <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
-            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+      <Card sx={{ mb: { xs: 2, md: 3 } }}>
+        <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={{ xs: 1.5, sm: 2 }}
+            alignItems={{ xs: "stretch", sm: "center" }}
+            sx={{ mb: 2 }}
+          >
+            <Typography variant="h6" sx={{ flexGrow: 1, fontSize: { xs: "1rem", sm: "1.25rem" } }}>
               Filtros
             </Typography>
             <Button
@@ -222,19 +262,27 @@ export function DividasEmpresaPageClient() {
                 setSelectedDivida(null)
                 setFormModalOpen(true)
               }}
+              fullWidth={{ xs: true, sm: false }}
+              sx={{ minHeight: { xs: 44, sm: 36 } }}
             >
               Nova Dívida
             </Button>
           </Stack>
 
-          <Tabs value={activeTab} onChange={(_, newValue) => setActiveTab(newValue)} sx={{ mb: 2 }}>
-            <Tab label="Todas" value="all" />
-            <Tab label="Pagas" value="pagas" />
-            <Tab label="Não Pagas" value="nao-pagas" />
-            <Tab label="Pendentes" value="pendentes" />
+          <Tabs
+            value={activeTab}
+            onChange={(_, newValue) => setActiveTab(newValue)}
+            sx={{ mb: 2 }}
+            variant="scrollable"
+            scrollButtons="auto"
+          >
+            <Tab label="Todas" value="all" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }} />
+            <Tab label="Pagas" value="pagas" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }} />
+            <Tab label="Não Pagas" value="nao-pagas" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }} />
+            <Tab label="Pendentes" value="pendentes" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }} />
           </Tabs>
 
-          <Grid container spacing={2}>
+          <Grid container spacing={{ xs: 1.5, md: 2 }}>
             <Grid size={{ xs: 12, md: 6 }}>
               <TextField
                 fullWidth
@@ -325,43 +373,56 @@ export function DividasEmpresaPageClient() {
           <CircularProgress />
         </Box>
       ) : currentDividas.data && currentDividas.data.length > 0 ? (
-        <TableContainer component={Paper}>
-          <Table>
+        <TableContainer
+          component={Paper}
+          sx={{
+            overflowX: "auto",
+            WebkitOverflowScrolling: "touch",
+            "&::-webkit-scrollbar": {
+              height: 8,
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "rgba(0,0,0,0.2)",
+              borderRadius: 4,
+            },
+          }}
+        >
+          <Table sx={{ minWidth: 900 }}>
             <TableHead>
               <TableRow>
-                <TableCell>Credor</TableCell>
-                <TableCell>Descrição</TableCell>
-                <TableCell align="right">Valor Total</TableCell>
-                <TableCell align="right">Valor Pago</TableCell>
-                <TableCell align="right">Valor a Pagar</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Data Pagamento</TableCell>
-                <TableCell align="center">Ações</TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Credor</TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Descrição</TableCell>
+                <TableCell align="right" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Valor Total</TableCell>
+                <TableCell align="right" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Valor Pago</TableCell>
+                <TableCell align="right" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Valor a Pagar</TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Status</TableCell>
+                <TableCell sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Data Pagamento</TableCell>
+                <TableCell align="center" sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>Ações</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {currentDividas.data.map((divida) => (
                 <TableRow key={divida.id} hover>
-                  <TableCell>
+                  <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                     <Typography fontWeight="medium">{divida.credor}</Typography>
                   </TableCell>
-                  <TableCell>
+                  <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                     <Typography variant="body2" color="text.secondary">
                       {divida.descricao}
                     </Typography>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="right" sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                     <Typography fontWeight="medium">{formatCurrency(divida.valor_total)}</Typography>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="right" sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                     <Typography color="success.main">{formatCurrency(divida.valor_pago)}</Typography>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="right" sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                     <Typography color="warning.main" fontWeight="medium">
                       {formatCurrency(divida.valor_total - divida.valor_pago)}
                     </Typography>
                   </TableCell>
-                  <TableCell>
+                  <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
                     <Chip
                       label={StatusDividaEmpresaLabels[divida.status]}
                       size="small"
@@ -369,19 +430,32 @@ export function DividasEmpresaPageClient() {
                         bgcolor: StatusDividaEmpresaColors[divida.status],
                         color: "white",
                         fontWeight: "medium",
+                        fontSize: { xs: "0.7rem", sm: "0.75rem" },
                       }}
                     />
                   </TableCell>
-                  <TableCell>{formatDate(divida.data_pagamento)}</TableCell>
-                  <TableCell align="center">
-                    <Stack direction="row" spacing={1} justifyContent="center">
+                  <TableCell sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                    {formatDate(divida.data_pagamento)}
+                  </TableCell>
+                  <TableCell align="center" sx={{ fontSize: { xs: "0.875rem", sm: "1rem" } }}>
+                    <Stack direction="row" spacing={0.5} justifyContent="center" flexWrap="wrap">
                       <Tooltip title="Editar">
-                        <IconButton size="small" onClick={() => handleEdit(divida)} color="primary">
+                        <IconButton
+                          size="small"
+                          onClick={() => handleEdit(divida)}
+                          color="primary"
+                          sx={{ minWidth: { xs: 32, sm: 40 }, minHeight: { xs: 32, sm: 40 } }}
+                        >
                           <EditIcon fontSize="small" />
                         </IconButton>
                       </Tooltip>
                       <Tooltip title="Deletar">
-                        <IconButton size="small" onClick={() => handleDelete(divida)} color="error">
+                        <IconButton
+                          size="small"
+                          onClick={() => handleDelete(divida)}
+                          color="error"
+                          sx={{ minWidth: { xs: 32, sm: 40 }, minHeight: { xs: 32, sm: 40 } }}
+                        >
                           <DeleteIcon fontSize="small" />
                         </IconButton>
                       </Tooltip>

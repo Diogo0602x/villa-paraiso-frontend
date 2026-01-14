@@ -83,22 +83,35 @@ export function PagamentosPageClient() {
     <Box>
       <PageHeader title="Pagamentos" subtitle="Histórico de pagamentos realizados" />
 
-      <Card sx={{ mb: 3 }}>
-        <CardContent>
-          <Stack direction={{ xs: "column", sm: "row" }} spacing={4}>
+      <Card sx={{ mb: { xs: 2, md: 3 } }}>
+        <CardContent sx={{ p: { xs: 1.5, sm: 2, md: 3 } }}>
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={{ xs: 2, sm: 4 }}>
             <Box>
-              <Typography variant="body2" color="text.secondary">
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+              >
                 Total de Pagamentos
               </Typography>
-              <Typography variant="h5" fontWeight={600}>
+              <Typography variant="h5" fontWeight={600} sx={{ fontSize: { xs: "1.25rem", sm: "1.5rem" } }}>
                 {pagamentos.length}
               </Typography>
             </Box>
             <Box>
-              <Typography variant="body2" color="text.secondary">
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}
+              >
                 Valor Total Recebido
               </Typography>
-              <Typography variant="h5" fontWeight={600} color="success.main">
+              <Typography
+                variant="h5"
+                fontWeight={600}
+                color="success.main"
+                sx={{ fontSize: { xs: "1.25rem", sm: "1.5rem" } }}
+              >
                 {formatCurrency(totalPagamentos)}
               </Typography>
             </Box>
