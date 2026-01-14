@@ -133,31 +133,40 @@ export function GoogleMapComponent({ kmlUrls, isLoading, selectedLoteId, onLoteS
           finalUrl = kmlUrl
           console.log("📥 Usando URL HTTPS pública diretamente:", finalUrl)
         } else if (isPublicApiRoute) {
-          // URL da rota /api/kml/public - extrair path e construir URL absoluta
-          // URLs absolutas com origin atual funcionam em localhost e produção!
+          // URL da rota /api/kml/public - usar diretamente com URL absoluta
+          // A rota /api/kml/public já serve o KML com headers corretos
+          // Em localhost, o Google Maps pode acessar URLs do mesmo domínio
           try {
             const urlObj = new URL(kmlUrl, currentOrigin)
             const path = urlObj.searchParams.get("path")
             if (path) {
-              // Construir URL absoluta usando origin atual - funciona em localhost e produção!
-              finalUrl = `${currentOrigin}/api/kml?path=${encodeURIComponent(path)}&t=${Date.now()}`
-              console.log("📥 Usando URL absoluta do proxy com path:", finalUrl)
+              // Usar a rota /api/kml/public diretamente com URL absoluta
+              finalUrl = `${currentOrigin}/api/kml/public?path=${encodeURIComponent(path)}`
+              console.log("📥 Usando rota /api/kml/public diretamente:", finalUrl)
             } else {
-              // Fallback: usar proxy com URL completa
-              finalUrl = `${currentOrigin}/api/kml?url=${encodeURIComponent(kmlUrl)}&t=${Date.now()}`
-              console.log("📥 Rota pública sem path - usando proxy com URL:", finalUrl)
+              // Fallback: usar a URL original se já for absoluta
+              if (kmlUrl.startsWith("http://") || kmlUrl.startsWith("https://")) {
+                finalUrl = kmlUrl
+                console.log("📥 Usando URL original absoluta:", finalUrl)
+              } else {
+                // Construir URL absoluta
+                finalUrl = `${currentOrigin}${kmlUrl}`
+                console.log("📥 Construindo URL absoluta:", finalUrl)
+              }
             }
           } catch (error) {
             // Se não conseguir parsear, tentar extrair path da URL
             const pathMatch = kmlUrl.match(/path=([^&]+)/)
             if (pathMatch) {
               const path = decodeURIComponent(pathMatch[1])
-              finalUrl = `${currentOrigin}/api/kml?path=${encodeURIComponent(path)}&t=${Date.now()}`
-              console.log("📥 Path extraído manualmente - usando URL absoluta:", finalUrl)
+              finalUrl = `${currentOrigin}/api/kml/public?path=${encodeURIComponent(path)}`
+              console.log("📥 Path extraído manualmente - usando /api/kml/public:", finalUrl)
             } else {
-              // Último fallback: usar proxy com URL
-              finalUrl = `${currentOrigin}/api/kml?url=${encodeURIComponent(kmlUrl)}&t=${Date.now()}`
-              console.log("📥 Fallback - usando proxy com URL:", finalUrl)
+              // Último fallback: usar URL original
+              finalUrl = kmlUrl.startsWith("http://") || kmlUrl.startsWith("https://") 
+                ? kmlUrl 
+                : `${currentOrigin}${kmlUrl}`
+              console.log("📥 Fallback - usando URL:", finalUrl)
             }
           }
         } else {
@@ -214,39 +223,44 @@ export function GoogleMapComponent({ kmlUrls, isLoading, selectedLoteId, onLoteS
                 west: defaultViewport.getSouthWest().lng(),
               })
             } else {
-              console.warn("⚠️ KML não tem viewport definido")
+              console.warn("⚠️ KML não tem viewport definido ainda - aguardando defaultviewport_changed")
             }
             
             loadedCount++
             
-            // Quando todos os KMLs estiverem carregados, ajustar o viewport
-            if (loadedCount === totalKmls) {
-              setTimeout(() => {
-                // Coletar todos os viewports dos layers carregados
-                const allBounds = new google.maps.LatLngBounds()
-                let hasValidBounds = false
-                
-                kmlLayersRef.current.forEach((layer) => {
-                  const viewport = layer.getDefaultViewport()
-                  if (viewport) {
-                    allBounds.union(viewport)
-                    hasValidBounds = true
-                  }
-                })
-                
-                if (hasValidBounds) {
-                  console.log("📍 Ajustando viewport para todos os KMLs")
-                  map.fitBounds(allBounds, { padding: 50 })
-                  
-                  setTimeout(() => {
-                    google.maps.event.trigger(map, "resize")
-                    map.fitBounds(allBounds, { padding: 50 })
-                    console.log("🔄 Viewport ajustado para múltiplos KMLs")
-                  }, 500)
-                } else {
-                  console.warn("⚠️ Nenhum KML tem viewport válido - usando zoom padrão")
+            // Função auxiliar para ajustar viewport quando disponível
+            const adjustViewport = () => {
+              const allBounds = new google.maps.LatLngBounds()
+              let hasValidBounds = false
+              
+              kmlLayersRef.current.forEach((layer) => {
+                const viewport = layer.getDefaultViewport()
+                if (viewport) {
+                  allBounds.union(viewport)
+                  hasValidBounds = true
                 }
-              }, 800)
+              })
+              
+              if (hasValidBounds) {
+                console.log("📍 Ajustando viewport para todos os KMLs")
+                map.fitBounds(allBounds, { padding: 50 })
+                
+                setTimeout(() => {
+                  google.maps.event.trigger(map, "resize")
+                  map.fitBounds(allBounds, { padding: 50 })
+                  console.log("🔄 Viewport ajustado para múltiplos KMLs")
+                }, 100)
+              } else {
+                console.warn("⚠️ Nenhum KML tem viewport válido ainda")
+              }
+            }
+            
+            // Quando todos os KMLs estiverem carregados, tentar ajustar o viewport
+            if (loadedCount === totalKmls) {
+              // Aguardar um pouco para o viewport ficar disponível
+              setTimeout(() => {
+                adjustViewport()
+              }, 1000)
             }
           } else if (status === google.maps.KmlLayerStatus.ERROR) {
             console.error("❌ Erro genérico ao carregar KML:", kmlUrl, statusName)
@@ -292,20 +306,41 @@ export function GoogleMapComponent({ kmlUrls, isLoading, selectedLoteId, onLoteS
         // Adicionar listener para quando o KML for totalmente carregado
         kmlLayer.addListener("defaultviewport_changed", () => {
           console.log("🔄 DefaultViewport mudou - KML totalmente processado:", kmlUrl)
-          // Recalcular bounds quando um viewport mudar
-          const allBounds = new google.maps.LatLngBounds()
-          let hasValidBounds = false
           
-          kmlLayersRef.current.forEach((layer) => {
-            const viewport = layer.getDefaultViewport()
-            if (viewport) {
-              allBounds.union(viewport)
-              hasValidBounds = true
+          // Verificar se todos os layers já foram carregados
+          const allLayersLoaded = kmlLayersRef.current.size === kmlUrls.length
+          
+          if (allLayersLoaded) {
+            // Recalcular bounds quando um viewport mudar
+            const allBounds = new google.maps.LatLngBounds()
+            let hasValidBounds = false
+            
+            kmlLayersRef.current.forEach((layer) => {
+              const viewport = layer.getDefaultViewport()
+              if (viewport) {
+                console.log("📍 Viewport disponível:", {
+                  north: viewport.getNorthEast().lat(),
+                  south: viewport.getSouthWest().lat(),
+                  east: viewport.getNorthEast().lng(),
+                  west: viewport.getSouthWest().lng(),
+                })
+                allBounds.union(viewport)
+                hasValidBounds = true
+              }
+            })
+            
+            if (hasValidBounds) {
+              console.log("📍 Ajustando viewport após defaultviewport_changed")
+              map.fitBounds(allBounds, { padding: 50 })
+              
+              setTimeout(() => {
+                google.maps.event.trigger(map, "resize")
+                map.fitBounds(allBounds, { padding: 50 })
+                console.log("🔄 Viewport ajustado após defaultviewport_changed")
+              }, 100)
+            } else {
+              console.warn("⚠️ Viewport ainda não disponível após defaultviewport_changed")
             }
-          })
-          
-          if (hasValidBounds) {
-            map.fitBounds(allBounds, { padding: 50 })
           }
         })
 

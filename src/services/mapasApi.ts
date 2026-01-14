@@ -107,15 +107,45 @@ export const mapasApi = {
   /**
    * Carrega o arquivo KML padrão automaticamente
    * Retorna a URL do KML para processamento
-   * Tenta primeiro usar a rota pública local, se falhar, tenta upload externo
+   * Em localhost: usa serviço externo (Google Maps não acessa localhost)
+   * Em produção: usa rota pública local (mais rápido)
    */
   getDefaultKmlUrl: async (): Promise<string> => {
     const kmlPath = "/kml/mapas-gerais/localizacao-chacaras-fazenda-teixeira.kml"
     
-    // Primeiro, tentar usar a rota pública local (mais rápido e confiável)
+    // Verificar se estamos em localhost
+    const isLocalhost = typeof window !== "undefined" && 
+      (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+    
+    if (isLocalhost) {
+      // Em localhost, usar serviço externo (Google Maps não acessa localhost)
+      console.log("🔄 Localhost detectado - usando serviço externo para Google Maps...")
+      const kmlResponse = await fetch(kmlPath)
+      
+      if (kmlResponse.ok) {
+        const kmlBlob = await kmlResponse.blob()
+        const kmlFile = new File([kmlBlob], "localizacao-chacaras-fazenda-teixeira.kml", {
+          type: "application/vnd.google-earth.kml+xml",
+        })
+        
+        try {
+          const uploadResponse = await mapasApi.uploadKml(kmlFile)
+          const externalUrl = uploadResponse.tempname || uploadResponse.tempname2
+          console.log("✅ URL externa obtida para localhost:", externalUrl)
+          return externalUrl
+        } catch (uploadError) {
+          console.error("❌ Erro no upload externo:", uploadError)
+          throw uploadError
+        }
+      }
+      
+      throw new Error(`Arquivo KML não encontrado em ${kmlPath}`)
+    }
+    
+    // Em produção, usar rota pública local (mais rápido e confiável)
     if (typeof window !== "undefined") {
       const publicUrl = `${window.location.origin}/api/kml/public?path=${encodeURIComponent(kmlPath)}`
-      console.log("🔄 Tentando usar rota pública local:", publicUrl)
+      console.log("🔄 Produção detectada - usando rota pública local:", publicUrl)
       
       // Verificar se a rota funciona
       try {
@@ -143,13 +173,7 @@ export const mapasApi = {
         const uploadResponse = await mapasApi.uploadKml(kmlFile)
         return uploadResponse.tempname || uploadResponse.tempname2
       } catch (uploadError) {
-        console.error("❌ Erro no upload externo, tentando rota pública local novamente:", uploadError)
-        // Se o upload externo falhar, tentar a rota pública local novamente
-        if (typeof window !== "undefined") {
-          const publicUrl = `${window.location.origin}/api/kml/public?path=${encodeURIComponent(kmlPath)}`
-          console.log("🔄 Fallback: usando rota pública local:", publicUrl)
-          return publicUrl
-        }
+        console.error("❌ Erro no upload externo:", uploadError)
         throw uploadError
       }
     }
