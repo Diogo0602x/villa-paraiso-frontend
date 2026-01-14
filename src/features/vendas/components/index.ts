@@ -1,0 +1,7 @@
+export { VendasFilters } from "./VendasFilters"
+export { VendasTable } from "./VendasTable"
+export { VendaForm } from "./VendaForm"
+export { VendaDetails } from "./VendaDetails"
+export { VendaEditForm } from "./VendaEditForm"
+export { RegistrarPagamentoModal } from "./RegistrarPagamentoModal"
+export { PermutaSection } from "./PermutaSection"

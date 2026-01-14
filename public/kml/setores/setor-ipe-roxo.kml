@@ -1,0 +1,1197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>FAZENDA BARREIROS - ALEXÂNIA-GO</name>
+	<description><![CDATA[<h4>Proprietario: <br/><font color="green">DOMINGOS SAVIO TEIXEIRA<br/></h4></font>
+<hr>
+<h4>Responsavel Tecnico:<br/> <font color="green">FLÁVIO BATISTA FERREIRA<br/>CREA: 4932573618-7<br/>Cod.Incra: FVBF<br/>email: </font><font color="blue"><a href="mailto:?">?</a></font>]]></description>
+	<atom:link rel="app" href="https://www.google.com/earth/about/versions/#earth-pro" title="Google Earth Pro 7.3.6.10201"></atom:link>
+	<Style id="estilo_layer_0">
+		<LineStyle>
+			<width>1.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>66ffffff</color>
+			<width>1.5</width>
+		</PolyStyle>
+	</Style>
+	<Style id="estilo_layer_1">
+		<LineStyle>
+			<color>ffffff00</color>
+			<width>1.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>66ffff00</color>
+			<width>1.5</width>
+		</PolyStyle>
+	</Style>
+	<Style id="estilo_layer_14">
+		<LineStyle>
+			<color>ff00ff00</color>
+			<width>1.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>6600ff00</color>
+			<width>1.5</width>
+		</PolyStyle>
+	</Style>
+	<Style id="estilo_layer_2">
+		<LineStyle>
+			<width>1.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>66ffffff</color>
+			<width>1.5</width>
+		</PolyStyle>
+	</Style>
+	<Style id="estilo_layer_21">
+		<LineStyle>
+			<width>1.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>66ffffff</color>
+			<width>1.5</width>
+		</PolyStyle>
+	</Style>
+	<Style id="estilo_layer_56">
+		<LineStyle>
+			<width>1.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>66ffffff</color>
+			<width>1.5</width>
+		</PolyStyle>
+	</Style>
+	<Style id="estilo_layer_57">
+		<LineStyle>
+			<width>1.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>66ffffff</color>
+			<width>1.5</width>
+		</PolyStyle>
+	</Style>
+	<Style id="estilo_layer_59">
+		<LineStyle>
+			<width>1.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>66ffffff</color>
+			<width>1.5</width>
+		</PolyStyle>
+	</Style>
+	<Style id="estilo_layer_60">
+		<LineStyle>
+			<width>1.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>66ffffff</color>
+			<width>1.5</width>
+		</PolyStyle>
+	</Style>
+	<Style id="estilo_layer_61">
+		<LineStyle>
+			<width>1.5</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>66ffffff</color>
+			<width>1.5</width>
+		</PolyStyle>
+	</Style>
+	<Placemark>
+		<name>(A)(PERIMETRO)</name>
+		<description><![CDATA[<h4>
+      Tipo:
+      <font color="green">
+      <b>
+Poligono Fechado
+      </b>
+      </font>
+</h4><h4>
+<hr>
+<h4>Responsavel Tecnico: <br/><font color="green">FLÁVIO BATISTA FERREIRA<br/>CREA: 4932573618-7<br/>Cod.Incra: FVBF<br/>email: </font><font color="blue"><a href="mailto:?">?</a></font>
+<font face=arial narrow><hr><h5><font color="black">Software AutoTOPO® </font><font color="blue"><em>www.autotopo.net</em></font></h5></font>]]></description>
+		<styleUrl>#estilo_layer_0</styleUrl>
+		<Style id="estilo_layer_0">
+			<LineStyle>
+				<color>ffffffff</color>
+				<width>1.5</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>66ffffff</color>
+				<width>1.5</width>
+			</PolyStyle>
+		</Style>
+		<MultiGeometry>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.4339575,-16.090289722246,0 -48.433928333354,-16.09022416665,0 
+				</coordinates>
+			</LineString>
+		</MultiGeometry>
+	</Placemark>
+	<Placemark>
+		<name>(L)(CORREGO)(CÓRREGO TABOCA)(L0.00)(PERMANENTE)(LN1)</name>
+		<description><![CDATA[<h4>
+Layer: <br/>
+<font color="green">
+(L)(CORREGO)(CÓRREGO TABOCA)(L0.00)(PERMANENTE)(LN1)
+</font>
+<br/>Linhas e Polilinhas Abertas e Fechadas
+</h4>
+<hr>
+<h4>Responsavel Tecnico: <br/><font color="green">FLÁVIO BATISTA FERREIRA<br/>CREA: 4932573618-7<br/>Cod.Incra: FVBF<br/>email: </font><font color="blue"><a href="mailto:?">?</a></font>
+<font face=arial narrow><hr><h5><font color="black">Software AutoTOPO® </font><font color="blue"><em>www.autotopo.net</em></font></h5></font>]]></description>
+		<styleUrl>#estilo_layer_1</styleUrl>
+		<Style id="estilo_layer_1">
+			<LineStyle>
+				<color>ffffff00</color>
+				<width>1.5</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>66ffff00</color>
+				<width>1.5</width>
+			</PolyStyle>
+		</Style>
+		<MultiGeometry>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433928333354,-16.09022416665,0 -48.4339575,-16.090289722246,0 -48.434287500027,-16.091047500011,0 -48.433998888867,-16.092393333353,0 -48.434230555528,-16.0925061111,0 -48.434367500004,-16.092449722198,0 -48.435009166668,-16.093178333317,0 -48.435436666694,-16.093601944449,0 -48.435534722233,-16.094121388903,0 -48.436048333346,-16.09442638889,0 -48.436051111103,-16.09483305554,0 -48.43649694446,-16.09556833331,0 -48.436945277804,-16.096298888877,0 -48.437329166689,-16.096908888909,0 -48.438149722236,-16.097292500024,0 -48.438032499999,-16.098114166651,0 -48.43835666668501,-16.098981944463,0 -48.438490833347,-16.099392500007,0 -48.43817694443499,-16.099819999975,0 
+				</coordinates>
+			</LineString>
+		</MultiGeometry>
+	</Placemark>
+	<Placemark>
+		<name>0</name>
+		<description><![CDATA[<h4>
+Layer: <br/>
+<font color="green">
+0
+</font>
+<br/>Linhas e Polilinhas Abertas e Fechadas
+</h4>
+<hr>
+<h4>Responsavel Tecnico: <br/><font color="green">FLÁVIO BATISTA FERREIRA<br/>CREA: 4932573618-7<br/>Cod.Incra: FVBF<br/>email: </font><font color="blue"><a href="mailto:?">?</a></font>
+<font face=arial narrow><hr><h5><font color="black">Software AutoTOPO® </font><font color="blue"><em>www.autotopo.net</em></font></h5></font>]]></description>
+		<styleUrl>#estilo_layer_2</styleUrl>
+		<Style id="estilo_layer_2">
+			<LineStyle>
+				<color>ffffffff</color>
+				<width>1.5</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>66ffffff</color>
+				<width>1.5</width>
+			</PolyStyle>
+		</Style>
+		<MultiGeometry>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-48.433928333354,-16.09022416665,0 -48.4339575,-16.090289722246,0 -48.434287500027,-16.091047500011,0 -48.433998888867,-16.092393333353,0 -48.434230555528,-16.0925061111,0 -48.434367500004,-16.092449722198,0 -48.435009166668,-16.093178333317,0 -48.435436666694,-16.093601944449,0 -48.435534722233,-16.094121388903,0 -48.436048333346,-16.09442638889,0 -48.436051111103,-16.09483305554,0 -48.43649694446,-16.09556833331,0 -48.436945277804,-16.096298888877,0 -48.437329166689,-16.096908888909,0 -48.438149722236,-16.097292500024,0 -48.438032499999,-16.098114166651,0 -48.43835666668501,-16.098981944463,0 -48.438490833347,-16.099392500007,0 -48.43817694443499,-16.099819999975,0 -48.43708000000599,-16.100159166639,0 -48.43620583331299,-16.100783055569,0 -48.43638805555,-16.104492500015,0 -48.436083611102,-16.10370305556,0 -48.435233611139,-16.102978055565,0 -48.434941666683,-16.102960277773,0 -48.434189444431,-16.103250833323,0 -48.433733888896,-16.103349722228,0 -48.43253611111501,-16.103521388864,0 -48.432029444422,-16.10365888888,0 -48.431955277785,-16.103683888862,0 -48.431311944444,-16.104202222236,0 -48.43053083331601,-16.103429722205,0 -48.429741111091,-16.102790277757,0 -48.429364722224,-16.101690277802,0 -48.42888249997301,-16.100456666666,0 -48.428416388895,-16.099571944429,0 -48.43069888888499,-16.099116111125,0 -48.431956666692,-16.099004444458,0 -48.433153055567,-16.099015277773,0 -48.430989999974,-16.093954722241,0 -48.430841388874,-16.091150833351,0 -48.430841944471,-16.091130833342,0 -48.431116388906,-16.091182499983,0 -48.431611944458,-16.091259999973,0 -48.43202972224899,-16.091258888894,0 -48.43235861113901,-16.091166666638,0 -48.432518055553,-16.091041666671,0 -48.432658611096,-16.090961666694,0 -48.43285833335399,-16.090903055575,0 -48.433027222232,-16.090832500005,0 -48.433155277784,-16.090733055559,0 -48.433290833353,-16.090566388898,0 -48.433428611139,-16.090451111107,0 -48.433928333354,-16.09022416665,0 -48.433928333354,-16.09022416665,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43394861113299,-16.102309444471,0 -48.434291388863,-16.103210833305,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43214472221201,-16.102642222197,0 -48.43248444441599,-16.103535277762,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.436041666638,-16.100012499986,0 -48.433654722229,-16.100364166641,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434093888879,-16.0919522222,0 -48.430885833325,-16.091991944447,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43435083334899,-16.102235277777,0 -48.432046388904,-16.102660555529,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433153055567,-16.099015277773,0 -48.43435083334899,-16.102235277777,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.432662777759,-16.091969999991,0 -48.433082777767,-16.093898611109,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433010833348,-16.09088833331,0 -48.433015000011,-16.091965555558,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43069888888499,-16.099116111125,0 -48.432046388904,-16.102660555529,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433082777767,-16.093898611109,0 -48.436007500019,-16.09964888888,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433946666686,-16.090265555574,0 -48.433454166661,-16.090489444447,0 -48.43332472220201,-16.09059749999,0 -48.433188611093,-16.090765000019,0 -48.433051388905,-16.090871388885,0 -48.43287444446899,-16.090945555579,0 -48.43267750002401,-16.091003333331,0 -48.432544722212,-16.091078888874,0 -48.432380833307,-16.091207500023,0 -48.43203638889899,-16.091304166654,0 -48.431608333334,-16.091305000021,0 -48.431108055579,-16.091226944434,0 -48.430842777781,-16.09117694447,0 
+				</coordinates>
+			</LineString>
+		</MultiGeometry>
+	</Placemark>
+	<Placemark>
+		<name>RESERVA_LEGAL</name>
+		<description><![CDATA[<h4>
+Layer: <br/>
+<font color="green">
+RESERVA_LEGAL
+</font>
+<br/>Linhas e Polilinhas Abertas e Fechadas
+</h4>
+<hr>
+<h4>Responsavel Tecnico: <br/><font color="green">FLÁVIO BATISTA FERREIRA<br/>CREA: 4932573618-7<br/>Cod.Incra: FVBF<br/>email: </font><font color="blue"><a href="mailto:?">?</a></font>
+<font face=arial narrow><hr><h5><font color="black">Software AutoTOPO® </font><font color="blue"><em>www.autotopo.net</em></font></h5></font>]]></description>
+		<styleUrl>#estilo_layer_14</styleUrl>
+		<Style id="estilo_layer_14">
+			<LineStyle>
+				<color>ff00ff00</color>
+				<width>1.5</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>6600ff00</color>
+				<width>1.5</width>
+			</PolyStyle>
+		</Style>
+		<MultiGeometry>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.430892777803,-16.100964444439,0 -48.430905833334,-16.101035833319,0 -48.430921666679,-16.101081944446,0 -48.430944444444,-16.10112499999,0 -48.430973888917,-16.10116416664,0 -48.43100916667299,-16.101198611087,0 -48.43104972223,-16.10122722225,0 -48.431094166681,-16.101249444418,0 -48.431144722242,-16.10126666667,0 -48.43119694442301,-16.101276944444,0 -48.431250277798,-16.101280833338,0 -48.431256666679,-16.101281111108,0 -48.431263055559,-16.101282222245,0 -48.431309999997,-16.101297222223,0 -48.431367499979,-16.101325000019,0 -48.431419722217,-16.101361388912,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.431419722217,-16.101361388912,0 -48.431486944433,-16.101361111085,0 -48.431553611109,-16.101350555541,0 -48.431617500028,-16.101329999992,0 -48.431677499997,-16.101300277749,0 -48.431731944452,-16.101261944466,0 -48.431776666673,-16.101217777785,0 -48.431812777796,-16.101166666684,0 -48.431839444455,-16.101110555552,0 -48.43185416666301,-16.101058333314,0 -48.431860555543,-16.101004444456,0 -48.431858611096,-16.100950277771,0 -48.431848055552,-16.100896944453,0 -48.431829444451,-16.100845833352,0 -48.431771388872,-16.100743611092,0 -48.43169666663799,-16.100652222204,0 -48.43169666663799,-16.100652222204,0 -48.431623888909,-16.100587222205,0 -48.431541944428,-16.100533055577,0 -48.43145305558299,-16.100490833343,0 -48.431396666682,-16.100473333321,0 -48.43133805556301,-16.100464444454,0 -48.431278888904,-16.100464166684,0 -48.431220277786,-16.100472777781,0 -48.431163888884,-16.100489722206,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.431163888884,-16.100489722206,0 -48.431112777782,-16.100464444454,0 -48.430969722196,-16.100408333322,0 -48.430668611102,-16.100319722248,0 -48.430497222237,-16.100268055549,0 -48.430280555554,-16.10019694444,0 -48.430008888876,-16.100107499998,0 -48.42983972222701,-16.100061944468,0 -48.429384722233,-16.099969166672,0 -48.429119166665,-16.099955000004,0 -48.428947499973,-16.09998305557,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.430892777803,-16.100964444439,0 -48.430860833343,-16.100948611094,0 -48.430801666684,-16.100925277789,0 -48.430509722228,-16.100839444471,0 -48.430322777788,-16.100783055569,0 -48.43009500002,-16.100708333336,0 -48.42983277775,-16.100621944421,0 -48.429715277799,-16.100590277789,0 -48.429277777769,-16.100501111117,0 -48.429197777792,-16.100496944454,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433685555552,-16.09033416664,0 -48.43369972221999,-16.090395833342,0 -48.4339952778,-16.09107499998,0 -48.433680833348,-16.092541944453,0 -48.43422055558101,-16.092804722207,0 -48.43428777779701,-16.092776944468,0 -48.43480194445,-16.093360833324,0 -48.43517638887,-16.093731944448,0 -48.435281388886,-16.094288888875,0 -48.43576916664999,-16.094578611114,0 -48.435771388867,-16.094907500004,0 -48.436255555565,-16.095705833326,0 -48.436704999989,-16.096438333339,0 -48.437132500014,-16.097118055574,0 -48.437844166652,-16.097450833358,0 -48.437745555573,-16.098143333354,0 -48.438091111118,-16.099068611091,0 -48.438181388869,-16.099345555569,0 -48.438002499986,-16.099589722221,0 -48.436950555547,-16.099914722217,0 -48.435918888887,-16.100651111124,0 -48.43620583331299,-16.100783055569,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.429741111091,-16.102790277757,0 -48.42998222221701,-16.10263222225,0 -48.429628888885,-16.101599722223,0 -48.429197777792,-16.100496944454,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.428947499973,-16.09998305557,0 -48.42870083333401,-16.099514999988,0 
+				</coordinates>
+			</LineString>
+		</MultiGeometry>
+	</Placemark>
+	<Placemark>
+		<name>TEXTO-18</name>
+		<description><![CDATA[<h4>
+Layer: <br/>
+<font color="green">
+TEXTO-18
+</font>
+<br/>Linhas e Polilinhas Abertas e Fechadas
+</h4>
+<hr>
+<h4>Responsavel Tecnico: <br/><font color="green">FLÁVIO BATISTA FERREIRA<br/>CREA: 4932573618-7<br/>Cod.Incra: FVBF<br/>email: </font><font color="blue"><a href="mailto:?">?</a></font>
+<font face=arial narrow><hr><h5><font color="black">Software AutoTOPO® </font><font color="blue"><em>www.autotopo.net</em></font></h5></font>]]></description>
+		<styleUrl>#estilo_layer_21</styleUrl>
+		<Style id="estilo_layer_21">
+			<LineStyle>
+				<color>ffffffff</color>
+				<width>1.5</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>66ffffff</color>
+				<width>1.5</width>
+			</PolyStyle>
+		</Style>
+		<MultiGeometry>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.436087499996,-16.100003333349,0 -48.436088055536,-16.100005833336,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43543527778699,-16.093600555542,0 -48.435436666694,-16.093601944449,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43292805555699,-16.093187500012,0 -48.434751388888,-16.092885555551,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43380555554599,-16.095319166685,0 -48.436124722199,-16.094954166672,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434475277777,-16.096636111094,0 -48.436916388871,-16.096251944439,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434796944419,-16.097268888891,0 -48.437306944463,-16.096873888865,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.438139166692,-16.09736638889,0 -48.43509083332201,-16.097846111097,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434089722215,-16.095878055559,0 -48.43196277780299,-16.096230555581,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.432276111118,-16.096963611134,0 -48.434458055582,-16.096602222244,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434816944428,-16.097308333311,0 -48.432581666645,-16.097678333355,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43130944445701,-16.094701944462,0 -48.433321944446,-16.094368611139,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433711388901,-16.095134444461,0 -48.431640833334,-16.095477222249,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43304249997999,-16.093713333346,0 -48.430980000027,-16.093768611111,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.435843888884,-16.099327222238,0 -48.433418611135,-16.099728888914,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43551083333099,-16.098672222215,0 -48.433169722222,-16.099059999993,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43152638891001,-16.101292500019,0 -48.43384111113,-16.100865277763,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.429629166655,-16.102463333315,0 -48.431786388907,-16.10197638886,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.431786388907,-16.10197638886,0 -48.434096111096,-16.101550277799,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43415750002801,-16.101715277784,0 -48.436244166653,-16.101564722237,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43620583331299,-16.100783055569,0 -48.43388666666,-16.100987222204,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.432880555579,-16.098377500002,0 -48.435168333313,-16.09799861109,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433472222223,-16.094663888892,0 -48.435824722243,-16.094293888905,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43543527778699,-16.093600555542,0 -48.43311694444401,-16.093965277785,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43286138888101,-16.092881388887,0 -48.43093444444,-16.09290527779,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43414472221,-16.095986111102,0 -48.436523611119,-16.095611666681,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.430989999974,-16.099881666678,0 -48.43335277776799,-16.099552500018,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433606111115,-16.100233333333,0 -48.43124861112099,-16.100561944453,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.42874444441801,-16.100194722223,0 -48.430989999974,-16.099881666678,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.429078333338,-16.100957500019,0 -48.43124861112099,-16.100561944453,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.429363611087,-16.101686666678,0 -48.43152638891001,-16.101292500019,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43025249998799,-16.103204444425,0 -48.432046388904,-16.102660555529,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.438448888883,-16.099264722225,0 -48.436007500019,-16.09964888888,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.438221666656,-16.098620277804,0 -48.435687222227,-16.099019166666,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.438050277791,-16.097990555533,0 -48.43537805557499,-16.098411111138,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43435083334899,-16.102235277777,0 -48.43630499998901,-16.102801666669,0 
+				</coordinates>
+			</LineString>
+		</MultiGeometry>
+	</Placemark>
+	<Placemark>
+		<name>TEXTO-20</name>
+		<description><![CDATA[<h4>
+Layer: <br/>
+<font color="green">
+TEXTO-20
+</font>
+<br/>Linhas e Polilinhas Abertas e Fechadas
+</h4>
+<hr>
+<h4>Responsavel Tecnico: <br/><font color="green">FLÁVIO BATISTA FERREIRA<br/>CREA: 4932573618-7<br/>Cod.Incra: FVBF<br/>email: </font><font color="blue"><a href="mailto:?">?</a></font>
+<font face=arial narrow><hr><h5><font color="black">Software AutoTOPO® </font><font color="blue"><em>www.autotopo.net</em></font></h5></font>]]></description>
+		<styleUrl>#estilo_layer_56</styleUrl>
+		<Style id="estilo_layer_56">
+			<LineStyle>
+				<color>ffffffff</color>
+				<width>1.5</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>66ffffff</color>
+				<width>1.5</width>
+			</PolyStyle>
+		</Style>
+		<MultiGeometry>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433367777803,-16.099459166683,0 -48.433367777803,-16.099459166683,0 
+				</coordinates>
+			</LineString>
+		</MultiGeometry>
+	</Placemark>
+	<Placemark>
+		<name>VERTICES_TIPO_V</name>
+		<description><![CDATA[<h4>
+Layer: <br/>
+<font color="green">
+VERTICES_TIPO_V
+</font>
+<br/>Linhas e Polilinhas Abertas e Fechadas
+</h4>
+<hr>
+<h4>Responsavel Tecnico: <br/><font color="green">FLÁVIO BATISTA FERREIRA<br/>CREA: 4932573618-7<br/>Cod.Incra: FVBF<br/>email: </font><font color="blue"><a href="mailto:?">?</a></font>
+<font face=arial narrow><hr><h5><font color="black">Software AutoTOPO® </font><font color="blue"><em>www.autotopo.net</em></font></h5></font>]]></description>
+		<styleUrl>#estilo_layer_57</styleUrl>
+		<Style id="estilo_layer_57">
+			<LineStyle>
+				<color>ffffffff</color>
+				<width>1.5</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>66ffffff</color>
+				<width>1.5</width>
+			</PolyStyle>
+		</Style>
+		<MultiGeometry>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.436007500019,-16.09964888888,0 -48.436041666638,-16.100012499986,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.436041666638,-16.100012499986,0 -48.43620583331299,-16.100783055569,0 
+				</coordinates>
+			</LineString>
+		</MultiGeometry>
+	</Placemark>
+	<Placemark>
+		<name>_GE_MARCAÃÃO4</name>
+		<description><![CDATA[<h4>
+Layer: <br/>
+<font color="green">
+_GE_MARCAÃÃO4
+</font>
+<br/>Linhas e Polilinhas Abertas e Fechadas
+</h4>
+<hr>
+<h4>Responsavel Tecnico: <br/><font color="green">FLÁVIO BATISTA FERREIRA<br/>CREA: 4932573618-7<br/>Cod.Incra: FVBF<br/>email: </font><font color="blue"><a href="mailto:?">?</a></font>
+<font face=arial narrow><hr><h5><font color="black">Software AutoTOPO® </font><font color="blue"><em>www.autotopo.net</em></font></h5></font>]]></description>
+		<styleUrl>#estilo_layer_59</styleUrl>
+		<Style id="estilo_layer_59">
+			<LineStyle>
+				<color>ffffffff</color>
+				<width>1.5</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>66ffffff</color>
+				<width>1.5</width>
+			</PolyStyle>
+		</Style>
+		<MultiGeometry>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43119027777301,-16.100813611122,0 -48.43098694444801,-16.100706666659,0 -48.430885833325,-16.100666944469,0 -48.430589166665,-16.100579444417,0 -48.430410000012,-16.100525555559,0 -48.430187777758,-16.100452777773,0 -48.429920833341,-16.100364722238,0 -48.42977749998499,-16.100326111128,0 -48.429331111087,-16.10023500001,0 -48.42923722221201,-16.100223888868,0 -48.4291422222,-16.100225000006,0 -48.428788611098,-16.100278611093,0 
+				</coordinates>
+			</LineString>
+		</MultiGeometry>
+	</Placemark>
+	<Placemark>
+		<name>_GE_NASCENTE1</name>
+		<description><![CDATA[<h4>
+Layer: <br/>
+<font color="green">
+_GE_NASCENTE1
+</font>
+<br/>Linhas e Polilinhas Abertas e Fechadas
+</h4>
+<hr>
+<h4>Responsavel Tecnico: <br/><font color="green">FLÁVIO BATISTA FERREIRA<br/>CREA: 4932573618-7<br/>Cod.Incra: FVBF<br/>email: </font><font color="blue"><a href="mailto:?">?</a></font>
+<font face=arial narrow><hr><h5><font color="black">Software AutoTOPO® </font><font color="blue"><em>www.autotopo.net</em></font></h5></font>]]></description>
+		<styleUrl>#estilo_layer_60</styleUrl>
+		<Style id="estilo_layer_60">
+			<LineStyle>
+				<color>ffffffff</color>
+				<width>1.5</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>66ffffff</color>
+				<width>1.5</width>
+			</PolyStyle>
+		</Style>
+		<MultiGeometry>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-48.431497222207,-16.101084444433,0 -48.431497222207,-16.101084444433,0 -48.431515833309,-16.101077222243,0 -48.43153333333,-16.101067777778,0 -48.431549444445,-16.101056111097,0 -48.43156027775899,-16.101045555553,0 -48.431569166684,-16.101033055562,0 -48.431575555564,-16.101019444434,0 -48.431579166688,-16.101006944443,0 -48.431580555538,-16.100993888912,0 -48.43157999999801,-16.100980833324,0 -48.43157750001101,-16.100967777793,0 -48.43157305557799,-16.100955555572,0 -48.43153777776399,-16.100893333329,0 -48.431492222234,-16.100837777794,0 -48.43144916668999,-16.100799166684,0 -48.431400555575,-16.100766944455,0 -48.43134777779699,-16.100741944473,0 -48.43134777779699,-16.100741944473,0 -48.431330000005,-16.100736666672,0 -48.43131166667399,-16.100734444455,0 -48.43129305557199,-16.100734999995,0 -48.431275000011,-16.100738888889,0 -48.431257777759,-16.100745833309,0 -48.43123583336,-16.100759166667,0 -48.43121666666201,-16.100775833322,0 -48.431200833317,-16.10079555556,0 -48.431186944419,-16.100820277773,0 -48.431177222242,-16.100846944432,0 -48.43117166667099,-16.100874722228,0 -48.431170277764,-16.100923055572,0 -48.431177777782,-16.100970833319,0 -48.431179999998,-16.1009772222,0 -48.431183055582,-16.100983055541,0 -48.431187222246,-16.100988333341,0 -48.43119194445,-16.100993055545,0 -48.43119750001999,-16.100996944439,0 -48.431203611131,-16.101000000023,0 -48.43121916664799,-16.101005277766,0 -48.43123555553301,-16.10100861112,0 -48.431251944418,-16.1010097222,0 -48.431292222205,-16.101012222244,0 -48.43133166668199,-16.101019722204,0 -48.431415277783,-16.101046111093,0 -48.431497222207,-16.101084444433,0 -48.431497222207,-16.101084444433,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+			<description>
+
+<![CDATA[ <h4>]]>
+      Tipo:
+<![CDATA[      <font color="green">]]>
+<![CDATA[      <b>]]>
+Poligono Fechado
+<![CDATA[      </b>]]>
+<![CDATA[      </font>]]>
+<![CDATA[</h4><h4>]]>
+      Propriedades: 
+<![CDATA[<br/>]]>
+<![CDATA[      <font color="green">]]>
+<![CDATA[<ol>]]>
+<![CDATA[    <li>]]>
+	  	Area (ha):
+0,1139
+<![CDATA[<br/>]]>
+	  	Area (m²):
+1.139,42
+<![CDATA[    </li>]]>
+<![CDATA[	 <li>]]>
+     	Perímetro (m):
+129,22
+<![CDATA[<br/>]]>
+     	Perímetro (km):
+0,129
+<![CDATA[    </li>]]>
+<![CDATA[</ol>]]>
+<![CDATA[</h4><hr>]]>
+<![CDATA[</font>]]>
+<![CDATA[<hr>]]>
+<![CDATA[<h4>Responsavel Tecnico: <br/><font color="green">FLÁVIO BATISTA FERREIRA<br/>CREA: 4932573618-7<br/>Cod.Incra: FVBF<br/>email: </font><font color="blue"><a href="mailto:?">?</a></font>]]>
+<![CDATA[<font face=arial narrow><hr><h5><font color="black">Software AutoTOPO® </font><font color="blue"><em>www.autotopo.net</em></font></h5></font>]]>
+
+</description>
+		</MultiGeometry>
+	</Placemark>
+	<Placemark>
+		<name>_GE_RUA1</name>
+		<description><![CDATA[<h4>
+Layer: <br/>
+<font color="green">
+_GE_RUA1
+</font>
+<br/>Linhas e Polilinhas Abertas e Fechadas
+</h4>
+<hr>
+<h4>Responsavel Tecnico: <br/><font color="green">FLÁVIO BATISTA FERREIRA<br/>CREA: 4932573618-7<br/>Cod.Incra: FVBF<br/>email: </font><font color="blue"><a href="mailto:?">?</a></font>
+<font face=arial narrow><hr><h5><font color="black">Software AutoTOPO® </font><font color="blue"><em>www.autotopo.net</em></font></h5></font>]]></description>
+		<styleUrl>#estilo_layer_61</styleUrl>
+		<Style id="estilo_layer_61">
+			<LineStyle>
+				<color>ffffffff</color>
+				<width>1.5</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>66ffffff</color>
+				<width>1.5</width>
+			</PolyStyle>
+		</Style>
+		<MultiGeometry>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43608833330601,-16.100008333322,0 -48.436096111093,-16.100050000016,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43414000000701,-16.101534999994,0 -48.43393055557101,-16.100971944457,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434051944472,-16.101565555547,0 -48.433842499979,-16.101002500009,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433685833322,-16.100313888907,0 -48.43338388886099,-16.099502499997,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433885277753,-16.100850000016,0 -48.433718055552,-16.100400555534,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433797222219,-16.100880555568,0 -48.433321944446,-16.099602499982,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43393055557101,-16.100971944457,0 -48.433885277753,-16.100850000016,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433842499979,-16.101002500009,0 -48.433797222219,-16.100880555568,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433718055552,-16.100400555534,0 -48.436096111093,-16.100050000016,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.430911944444,-16.09993833335,0 -48.430878888905,-16.099851666665,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43338388886099,-16.099502499997,0 -48.430878888905,-16.099851666665,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433321944446,-16.099602499982,0 -48.430911944444,-16.09993833335,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.435961111121,-16.099653055544,0 -48.435991111134,-16.099974166646,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.435210277777,-16.097978888909,0 -48.435132500016,-16.097826388915,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.435126388906,-16.098018611099,0 -48.435048888916,-16.097866111105,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.435419999982,-16.09839111113,0 -48.435210277777,-16.097978888909,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43533611111099,-16.098431111089,0 -48.435126388906,-16.098018611099,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434186666674,-16.095966111093,0 -48.434523333351,-16.096628611133,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43410277780301,-16.09600611111,0 -48.434416111118,-16.096622222196,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.432906944468,-16.09287222225,0 -48.432720000028,-16.092014444442,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43281555558,-16.092890833352,0 -48.432605277778,-16.091925555541,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.432973611087,-16.093178055547,0 -48.432906944468,-16.09287222225,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.432720000028,-16.092014444442,0 -48.433061944449,-16.092010277778,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43336388891,-16.0943488889,0 -48.433158888908,-16.093945277777,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433279999982,-16.09438861109,0 -48.43307499998001,-16.093985277794,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433430277759,-16.094683888901,0 -48.433279999982,-16.09438861109,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43308833333801,-16.093704166652,0 -48.432973611087,-16.093178055547,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43299694445,-16.093722777753,0 -48.432882222199,-16.093196666649,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433128611125,-16.093889166645,0 -48.43308833333801,-16.093704166652,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433038333317,-16.093913333317,0 -48.43299694445,-16.093722777753,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433158888908,-16.093945277777,0 -48.433124722231,-16.093878611101,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43307499998001,-16.093985277794,0 -48.433038333317,-16.093913333317,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43375333330799,-16.095114444453,0 -48.433514166687,-16.094644166653,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433669444437,-16.09515444447,0 -48.433430277759,-16.094683888901,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43384722224,-16.095299166676,0 -48.43375333330799,-16.095114444453,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433763611139,-16.095339166693,0 -48.433669444437,-16.09515444447,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434186666674,-16.095966111093,0 -48.43384722224,-16.095299166676,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43410277780301,-16.09600611111,0 -48.433763611139,-16.095339166693,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43483888888301,-16.097248888883,0 -48.434517222241,-16.096616111085,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434755000012,-16.09728861113,0 -48.434410000008,-16.096609999975,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.436055833306,-16.099641388862,0 -48.435729166691,-16.098999444428,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.435132500016,-16.097826388915,0 -48.434858888892,-16.09728833336,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.435729166691,-16.098999444428,0 -48.435552777795,-16.098652499976,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.435552777795,-16.098652499976,0 -48.435419999982,-16.09839111113,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.435645277763,-16.099039166675,0 -48.43521944447101,-16.098201666645,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.4339575,-16.102353611095,0 -48.43201638889099,-16.102711944457,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434113333348,-16.101730555531,0 -48.434051944472,-16.101565555547,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434201388882,-16.101699999979,0 -48.43414000000701,-16.101534999994,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433685833322,-16.100313888907,0 -48.435991111134,-16.099974166646,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.436054166687,-16.099644999986,0 -48.43608833330601,-16.100008333322,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.435965555555,-16.099668888888,0 -48.435645277763,-16.099039166675,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.435048888916,-16.097866111105,0 -48.434775277791,-16.09732805555,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433514166687,-16.094644166653,0 -48.43336388891,-16.0943488889,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43154027775099,-16.101198055547,0 -48.431447222243,-16.101215277799,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.432882222199,-16.093196666649,0 -48.43281555558,-16.092890833352,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43266194444901,-16.091924722231,0 -48.432968333344,-16.091921111107,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433057777785,-16.090918055553,0 -48.433061944449,-16.092010277778,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43296444445001,-16.090956944433,0 -48.432968333344,-16.091921111107,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.431482499999,-16.101308333307,0 -48.431479722242,-16.101301111116,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43174249999601,-16.101991944435,0 -48.431447222243,-16.101215277799,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43157277774999,-16.101283888864,0 -48.43157027776401,-16.101276944444,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43183027776,-16.101960833343,0 -48.43154027775099,-16.101198055547,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43174249999601,-16.101991944435,0 -48.43201638889099,-16.102711944457,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43183027776,-16.101960833343,0 -48.432076666687,-16.102608888888,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433939999978,-16.10226500002,0 -48.432076666687,-16.102608888888,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434288333337,-16.102200833331,0 -48.433939999978,-16.10226500002,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434413055534,-16.102269722224,0 -48.4339575,-16.102353611095,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.434051944472,-16.101565555547,0 -48.434288333337,-16.102200833331,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43414000000701,-16.101534999994,0 -48.434413055534,-16.102269722224,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.43396500001699,-16.090307222211,0 -48.43348000001,-16.090527500018,0 -48.43335888887901,-16.09062888891,0 -48.43322194446,-16.090796944422,0 -48.433075833347,-16.090910555535,0 -48.432890555584,-16.090988055583,0 -48.432696388896,-16.091045000025,0 -48.432571388871,-16.091116111134,0 -48.43240277776201,-16.09124833335,0 -48.43204305555,-16.091349166645,0 -48.43160444444,-16.091350277782,0 -48.431100000021,-16.091271388885,0 -48.430845277768,-16.091223611137,0 
+				</coordinates>
+			</LineString>
+			<LineString>
+				<tessellate>1</tessellate>
+				<coordinates>
+					-48.433928333354,-16.09022416665,0 -48.433428611139,-16.090451111107,0 -48.433290833353,-16.090566388898,0 -48.433155277784,-16.090733055559,0 -48.433027222232,-16.090832500005,0 -48.43285833335399,-16.090903055575,0 -48.432658611096,-16.090961666694,0 -48.432518055553,-16.091041666671,0 -48.43235861113901,-16.091166666638,0 -48.43202972224899,-16.091258888894,0 -48.431611944458,-16.091259999973,0 -48.431116388906,-16.091182499983,0 -48.430841944471,-16.091130833342,0 
+				</coordinates>
+			</LineString>
+		</MultiGeometry>
+	</Placemark>
+</Document>
+</kml>

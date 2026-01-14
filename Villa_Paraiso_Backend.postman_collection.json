@@ -1,0 +1,782 @@
+{
+	"info": {
+		"_postman_id": "villa-paraiso-backend-2025",
+		"name": "Villa Paraíso Backend API",
+		"description": "Collection completa da API Villa Paraíso Backend\n\n## Estrutura:\n- **Health Check**: Verificação de status da API\n- **Setores**: Gerenciamento de setores (7 setores)\n- **Lotes**: Gerenciamento de lotes (136 lotes)\n- **Dívidas**: Gerenciamento de dívidas da empresa\n- **Resumo**: Estatísticas e resumos gerais\n\n## Variáveis de Ambiente:\n- `base_url`: URL base da API (padrão: http://localhost:8000)\n- `setor_slug`: Slug do setor para testes\n- `setor_id`: ID do setor\n- `lote_id`: ID ou número do lote\n- `status_lote`: Status do lote (disponivel, reservado, vendido, indisponivel)\n- `status_divida`: Status da dívida (pendente, parcialmente_paga, paga, cancelada)\n\n## Como usar:\n1. Importe a collection e o environment no Postman\n2. Configure a variável `base_url` se necessário\n3. Execute os endpoints na ordem sugerida",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Root",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has status ok\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"ok\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/",
+							"host": ["{{base_url}}"],
+							"path": [""]
+						},
+						"description": "Health check básico da API"
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has healthy status\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.eql(\"healthy\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": ["{{base_url}}"],
+							"path": ["health"]
+						},
+						"description": "Health check detalhado"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Setores",
+			"item": [
+				{
+					"name": "Listar Todos os Setores",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is an array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"",
+									"pm.test(\"Has at least one setor\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.be.above(0);",
+									"});",
+									"",
+									"// Salvar primeiro setor_id para uso posterior",
+									"if (pm.response.json().length > 0) {",
+									"    pm.environment.set(\"setor_id\", pm.response.json()[0].id);",
+									"    pm.environment.set(\"setor_slug\", pm.response.json()[0].slug);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/setores",
+							"host": ["{{base_url}}"],
+							"path": ["api", "setores"]
+						},
+						"description": "Retorna lista de todos os setores com contadores atualizados dinamicamente:\n- total_lotes: Total de lotes no setor\n- lotes_com_agua: Lotes com acesso à água\n\n**Setores disponíveis:**\n- setor-portal-do-cerrado\n- setor-vale-do-pequi\n- setor-riacho-dourado\n- setor-montes-claros\n- setor-ipe-roxo\n- setor-aguas-do-cerrado\n- setor-vista-do-sol"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Setor por Slug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has setor data\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('slug');",
+									"    pm.expect(jsonData).to.have.property('nome');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/setores/slug/{{setor_slug}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "setores", "slug", "{{setor_slug}}"],
+							"variable": [
+								{
+									"key": "setor_slug",
+									"value": "setor-portal-do-cerrado",
+									"description": "Slug do setor"
+								}
+							]
+						},
+						"description": "Retorna um setor específico pelo slug\n\n**Exemplos de slugs:**\n- setor-portal-do-cerrado\n- setor-vale-do-pequi\n- setor-riacho-dourado\n- setor-montes-claros\n- setor-ipe-roxo\n- setor-aguas-do-cerrado\n- setor-vista-do-sol"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Setor por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has setor data\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData.id).to.eql(pm.environment.get('setor_id'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/setores/{{setor_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "setores", "{{setor_id}}"],
+							"variable": [
+								{
+									"key": "setor_id",
+									"value": "",
+									"description": "ID do setor (UUID)"
+								}
+							]
+						},
+						"description": "Retorna um setor específico pelo ID com contadores atualizados"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lotes",
+			"item": [
+				{
+					"name": "Listar Todos os Lotes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is an array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"",
+									"pm.test(\"Has 136 lotes\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.eql(136);",
+									"});",
+									"",
+									"// Salvar primeiro lote_id para uso posterior",
+									"if (pm.response.json().length > 0) {",
+									"    pm.environment.set(\"lote_id\", pm.response.json()[0].id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lotes",
+							"host": ["{{base_url}}"],
+							"path": ["api", "lotes"]
+						},
+						"description": "Retorna lista de todos os 136 lotes ordenados por número"
+					},
+					"response": []
+				},
+				{
+					"name": "Filtros",
+					"item": [
+						{
+							"name": "Por Status - Disponíveis",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/lotes?status=disponivel",
+									"host": ["{{base_url}}"],
+									"path": ["api", "lotes"],
+									"query": [
+										{
+											"key": "status",
+											"value": "disponivel",
+											"description": "Status: disponivel, reservado, vendido, indisponivel"
+										}
+									]
+								},
+								"description": "Filtra lotes disponíveis"
+							},
+							"response": []
+						},
+						{
+							"name": "Por Status - Vendidos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/lotes?status=vendido",
+									"host": ["{{base_url}}"],
+									"path": ["api", "lotes"],
+									"query": [
+										{
+											"key": "status",
+											"value": "vendido"
+										}
+									]
+								},
+								"description": "Filtra lotes vendidos"
+							},
+							"response": []
+						},
+						{
+							"name": "Por Setor (Slug)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/lotes?setor_slug={{setor_slug}}",
+									"host": ["{{base_url}}"],
+									"path": ["api", "lotes"],
+									"query": [
+										{
+											"key": "setor_slug",
+											"value": "{{setor_slug}}"
+										}
+									]
+								},
+								"description": "Filtra lotes por slug do setor"
+							},
+							"response": []
+						},
+						{
+							"name": "Por Setor (ID)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/lotes?setor_id={{setor_id}}",
+									"host": ["{{base_url}}"],
+									"path": ["api", "lotes"],
+									"query": [
+										{
+											"key": "setor_id",
+											"value": "{{setor_id}}"
+										}
+									]
+								},
+								"description": "Filtra lotes por ID do setor"
+							},
+							"response": []
+						},
+						{
+							"name": "Por Número",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/lotes?numero={{lote_numero}}",
+									"host": ["{{base_url}}"],
+									"path": ["api", "lotes"],
+									"query": [
+										{
+											"key": "numero",
+											"value": "{{lote_numero}}",
+											"description": "Número do lote (ex: 001, 136)"
+										}
+									]
+								},
+								"description": "Busca lotes por número (busca parcial)"
+							},
+							"response": []
+						},
+						{
+							"name": "Com Acesso à Água",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/lotes?tem_acesso_agua=true",
+									"host": ["{{base_url}}"],
+									"path": ["api", "lotes"],
+									"query": [
+										{
+											"key": "tem_acesso_agua",
+											"value": "true"
+										}
+									]
+								},
+								"description": "Filtra lotes com acesso à água"
+							},
+							"response": []
+						},
+						{
+							"name": "Múltiplos Filtros",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/lotes?setor_slug={{setor_slug}}&status=disponivel&tem_acesso_agua=true",
+									"host": ["{{base_url}}"],
+									"path": ["api", "lotes"],
+									"query": [
+										{
+											"key": "setor_slug",
+											"value": "{{setor_slug}}"
+										},
+										{
+											"key": "status",
+											"value": "disponivel"
+										},
+										{
+											"key": "tem_acesso_agua",
+											"value": "true"
+										}
+									]
+								},
+								"description": "Combina múltiplos filtros:\n- Setor por slug\n- Status disponível\n- Com acesso à água"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Resumo por Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has status summary\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('total');",
+									"    pm.expect(jsonData).to.have.property('disponiveis');",
+									"    pm.expect(jsonData).to.have.property('vendidos');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lotes/resumo/status",
+							"host": ["{{base_url}}"],
+							"path": ["api", "lotes", "resumo", "status"]
+						},
+						"description": "Retorna resumo de lotes por status:\n- total\n- disponiveis\n- reservados\n- vendidos\n- indisponiveis"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Lote por ID ou Número",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has lote data\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('numero');",
+									"    pm.expect(jsonData).to.have.property('status');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/lotes/{{lote_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "lotes", "{{lote_id}}"],
+							"variable": [
+								{
+									"key": "lote_id",
+									"value": "001",
+									"description": "ID do lote (UUID) ou número (ex: 001, 136)"
+								}
+							]
+						},
+						"description": "Busca lote por ID ou número.\n\n**Comportamento:**\n1. Tenta buscar por ID primeiro\n2. Se não encontrar, tenta buscar por número\n3. Normaliza número com zeros à esquerda (ex: 1 → 001)\n\n**Exemplos:**\n- Por ID: UUID completo\n- Por número: 001, 136, etc."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dívidas",
+			"item": [
+				{
+					"name": "Listar Todas as Dívidas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is an array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});",
+									"",
+									"// Salvar primeira divida_id para uso posterior",
+									"if (pm.response.json().length > 0) {",
+									"    pm.environment.set(\"divida_id\", pm.response.json()[0].id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/dividas",
+							"host": ["{{base_url}}"],
+							"path": ["api", "dividas"]
+						},
+						"description": "Retorna lista de todas as dívidas da empresa ordenadas por valor total (maior para menor)\n\n**Dívidas cadastradas:**\n- Bradesco: R$ 1.523.456,78\n- Sicoob: R$ 1.234.567,89\n- Caixa: R$ 1.789.123,45\n- Banco do Brasil: R$ 856.789,12\n\n**Total:** R$ 5.403.937,24"
+					},
+					"response": []
+				},
+				{
+					"name": "Filtros",
+					"item": [
+						{
+							"name": "Por Status - Pendentes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/dividas?status=pendente",
+									"host": ["{{base_url}}"],
+									"path": ["api", "dividas"],
+									"query": [
+										{
+											"key": "status",
+											"value": "pendente",
+											"description": "Status: pendente, parcialmente_paga, paga, cancelada"
+										}
+									]
+								},
+								"description": "Filtra dívidas pendentes"
+							},
+							"response": []
+						},
+						{
+							"name": "Por Credor",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/dividas?credor={{credor}}",
+									"host": ["{{base_url}}"],
+									"path": ["api", "dividas"],
+									"query": [
+										{
+											"key": "credor",
+											"value": "{{credor}}",
+											"description": "Nome do credor (busca parcial, case-insensitive)"
+										}
+									]
+								},
+								"description": "Busca dívidas por credor (busca parcial)\n\n**Exemplos:**\n- Bradesco\n- Sicoob\n- Caixa\n- Banco do Brasil"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Resumo Financeiro",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has financial summary\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('valor_total');",
+									"    pm.expect(jsonData).to.have.property('valor_pago');",
+									"    pm.expect(jsonData).to.have.property('valor_a_pagar');",
+									"    pm.expect(jsonData).to.have.property('percentual_pago');",
+									"});",
+									"",
+									"pm.test(\"Values are consistent\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var expected = jsonData.valor_total - jsonData.valor_pago;",
+									"    pm.expect(jsonData.valor_a_pagar).to.eql(expected);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/dividas/resumo/total",
+							"host": ["{{base_url}}"],
+							"path": ["api", "dividas", "resumo", "total"]
+						},
+						"description": "Retorna resumo financeiro completo das dívidas:\n- valor_total: Valor total das dívidas\n- valor_pago: Valor já pago\n- valor_a_pagar: Valor ainda a pagar\n- total_dividas: Quantidade de dívidas\n- dividas_pendentes: Quantidade pendente\n- dividas_parciais: Quantidade parcialmente paga\n- dividas_pagas: Quantidade paga\n- percentual_pago: Percentual já pago"
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Dívida por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has divida data\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('credor');",
+									"    pm.expect(jsonData).to.have.property('valor_total');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/dividas/{{divida_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "dividas", "{{divida_id}}"],
+							"variable": [
+								{
+									"key": "divida_id",
+									"value": "",
+									"description": "ID da dívida (UUID)"
+								}
+							]
+						},
+						"description": "Retorna uma dívida específica pelo ID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Resumo",
+			"item": [
+				{
+					"name": "Resumo Geral",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has summary structure\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('lotes');",
+									"    pm.expect(jsonData).to.have.property('setores');",
+									"    pm.expect(jsonData).to.have.property('dividas');",
+									"});",
+									"",
+									"pm.test(\"Lotes summary is complete\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.lotes).to.have.property('total');",
+									"    pm.expect(jsonData.lotes).to.have.property('disponiveis');",
+									"    pm.expect(jsonData.lotes).to.have.property('vendidos');",
+									"    pm.expect(jsonData.lotes).to.have.property('com_agua');",
+									"    pm.expect(jsonData.lotes).to.have.property('percentual_vendido');",
+									"});",
+									"",
+									"pm.test(\"Dividas summary is complete\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.dividas).to.have.property('valor_total');",
+									"    pm.expect(jsonData.dividas).to.have.property('valor_pago');",
+									"    pm.expect(jsonData.dividas).to.have.property('valor_a_pagar');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/resumo/geral",
+							"host": ["{{base_url}}"],
+							"path": ["api", "resumo", "geral"]
+						},
+						"description": "Retorna resumo geral completo do sistema:\n\n**Lotes:**\n- total: Total de lotes\n- disponiveis: Lotes disponíveis\n- vendidos: Lotes vendidos\n- com_agua: Lotes com acesso à água\n- percentual_vendido: Percentual de lotes vendidos\n\n**Setores:**\n- total: Total de setores\n\n**Dívidas:**\n- valor_total: Valor total das dívidas\n- valor_pago: Valor já pago\n- valor_a_pagar: Valor a pagar\n- total_dividas: Quantidade de dívidas"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Configurações globais de pré-requisição",
+					"// Pode adicionar autenticação, headers, etc aqui"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Testes globais",
+					"pm.test(\"Response time is less than 2000ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "setor_slug",
+			"value": "setor-portal-do-cerrado",
+			"type": "string"
+		},
+		{
+			"key": "setor_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "lote_id",
+			"value": "001",
+			"type": "string"
+		},
+		{
+			"key": "lote_numero",
+			"value": "001",
+			"type": "string"
+		},
+		{
+			"key": "status_lote",
+			"value": "disponivel",
+			"type": "string"
+		},
+		{
+			"key": "status_divida",
+			"value": "pendente",
+			"type": "string"
+		},
+		{
+			"key": "divida_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "credor",
+			"value": "Bradesco",
+			"type": "string"
+		}
+	]
+}
