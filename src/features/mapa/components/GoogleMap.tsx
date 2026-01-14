@@ -115,15 +115,17 @@ export function GoogleMapComponent({ kmlUrls, isLoading, selectedLoteId, onLoteS
           return
         }
 
-        // IMPORTANTE: O Google Maps KmlLayer precisa de uma URL pública acessível
+        // IMPORTANTE: O Google Maps KmlLayer precisa de uma URL acessível
         // Estratégia:
         // 1. URLs HTTPS públicas → usar diretamente
-        // 2. URLs /api/kml/public → usar diretamente (rota serve do public)
-        // 3. URLs localhost ou HTTP → usar proxy (/api/kml)
-        // 4. URLs relativas → usar proxy
+        // 2. URLs /api/kml/public → extrair path e construir URL absoluta com origin atual
+        // 3. URLs localhost ou HTTP → extrair path se possível, senão usar proxy
         const isLocalhost = kmlUrl.includes("localhost") || kmlUrl.includes("127.0.0.1")
         const isPublicHttps = kmlUrl.startsWith("https://") && !isLocalhost
         const isPublicApiRoute = kmlUrl.includes("/api/kml/public")
+        
+        // Obter origin atual (funciona tanto em localhost quanto em produção)
+        const currentOrigin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
         
         let finalUrl: string
         if (isPublicHttps) {
@@ -131,40 +133,37 @@ export function GoogleMapComponent({ kmlUrls, isLoading, selectedLoteId, onLoteS
           finalUrl = kmlUrl
           console.log("📥 Usando URL HTTPS pública diretamente:", finalUrl)
         } else if (isPublicApiRoute) {
-          // URL da rota /api/kml/public - extrair path e usar proxy diretamente
-          // Isso evita problemas com localhost no Google Maps
+          // URL da rota /api/kml/public - extrair path e construir URL absoluta
+          // URLs absolutas com origin atual funcionam em localhost e produção!
           try {
-            const urlObj = new URL(kmlUrl, typeof window !== "undefined" ? window.location.origin : "http://localhost:3000")
+            const urlObj = new URL(kmlUrl, currentOrigin)
             const path = urlObj.searchParams.get("path")
             if (path) {
-              // Usar path diretamente no proxy (mais eficiente e funciona em localhost)
-              const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
-              finalUrl = `${origin}/api/kml?path=${encodeURIComponent(path)}&t=${Date.now()}`
-              console.log("📥 URL da rota pública - usando proxy com path direto:", finalUrl)
+              // Construir URL absoluta usando origin atual - funciona em localhost e produção!
+              finalUrl = `${currentOrigin}/api/kml?path=${encodeURIComponent(path)}&t=${Date.now()}`
+              console.log("📥 Usando URL absoluta do proxy com path:", finalUrl)
             } else {
-              // Fallback: usar URL completa
-              const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
-              finalUrl = `${origin}/api/kml?url=${encodeURIComponent(kmlUrl)}&t=${Date.now()}`
+              // Fallback: usar proxy com URL completa
+              finalUrl = `${currentOrigin}/api/kml?url=${encodeURIComponent(kmlUrl)}&t=${Date.now()}`
               console.log("📥 Rota pública sem path - usando proxy com URL:", finalUrl)
             }
           } catch (error) {
-            // Se não conseguir parsear, usar URL completa
-            const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
-            finalUrl = `${origin}/api/kml?url=${encodeURIComponent(kmlUrl)}&t=${Date.now()}`
-            console.log("📥 Erro ao parsear - usando proxy com URL:", finalUrl)
+            // Se não conseguir parsear, tentar extrair path da URL
+            const pathMatch = kmlUrl.match(/path=([^&]+)/)
+            if (pathMatch) {
+              const path = decodeURIComponent(pathMatch[1])
+              finalUrl = `${currentOrigin}/api/kml?path=${encodeURIComponent(path)}&t=${Date.now()}`
+              console.log("📥 Path extraído manualmente - usando URL absoluta:", finalUrl)
+            } else {
+              // Último fallback: usar proxy com URL
+              finalUrl = `${currentOrigin}/api/kml?url=${encodeURIComponent(kmlUrl)}&t=${Date.now()}`
+              console.log("📥 Fallback - usando proxy com URL:", finalUrl)
+            }
           }
         } else {
           // URL local ou HTTP - usar proxy com URL absoluta
-          const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
-          finalUrl = `${origin}/api/kml?url=${encodeURIComponent(kmlUrl)}&t=${Date.now()}`
-          console.log("📥 URL local/HTTP - usando proxy:", finalUrl)
-          if (isLocalhost) {
-            console.warn("⚠️ ATENÇÃO: Google Maps não consegue acessar URLs localhost por questões de segurança.")
-            console.warn("💡 Para testar localmente, você pode:")
-            console.warn("   1. Usar um túnel (ngrok, localtunnel) para expor localhost como URL pública")
-            console.warn("   2. Testar diretamente em produção (Render)")
-            console.warn("   3. O mapa funcionará normalmente em produção com URLs HTTPS")
-          }
+          finalUrl = `${currentOrigin}/api/kml?url=${encodeURIComponent(kmlUrl)}&t=${Date.now()}`
+          console.log("📥 URL local/HTTP - usando proxy com URL absoluta:", finalUrl)
         }
 
         console.log("📎 URL final para KML layer:", finalUrl)
@@ -172,14 +171,23 @@ export function GoogleMapComponent({ kmlUrls, isLoading, selectedLoteId, onLoteS
         // Create new KML layer
         // IMPORTANTE: preserveViewport: true para não ajustar automaticamente cada layer
         // Vamos ajustar manualmente quando todos os layers estiverem carregados
-        const kmlLayer = new google.maps.KmlLayer({
-          url: finalUrl,
-          map: map,
-          preserveViewport: true, // Não ajustar automaticamente - vamos fazer manualmente
-          suppressInfoWindows: false, // Show info windows on click
-        })
+        let kmlLayer: google.maps.KmlLayer
+        try {
+          kmlLayer = new google.maps.KmlLayer({
+            url: finalUrl,
+            map: map,
+            preserveViewport: true, // Não ajustar automaticamente - vamos fazer manualmente
+            suppressInfoWindows: false, // Show info windows on click
+          })
 
-        kmlLayersRef.current.set(kmlUrl, kmlLayer)
+          console.log("✅ KmlLayer criado com sucesso para:", finalUrl)
+          kmlLayersRef.current.set(kmlUrl, kmlLayer)
+        } catch (error) {
+          console.error("❌ Erro ao criar KmlLayer:", error)
+          console.error("   URL usada:", finalUrl)
+          loadedCount++ // Contar como carregado para não travar
+          return
+        }
 
         // Handle KML layer load
         kmlLayer.addListener("status_changed", () => {
