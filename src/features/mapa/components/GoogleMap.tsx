@@ -28,6 +28,15 @@ export function GoogleMapComponent({ kmlUrls, isLoading, selectedLoteId, onLoteS
   // Get Google Maps API key from environment
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""
 
+  // Verificar se a API key está configurada
+  useEffect(() => {
+    if (!apiKey) {
+      console.error("❌ NEXT_PUBLIC_GOOGLE_MAPS_API_KEY não está configurada!")
+    } else {
+      console.log("✅ Google Maps API Key configurada:", apiKey.substring(0, 10) + "...")
+    }
+  }, [apiKey])
+
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: apiKey,
@@ -107,18 +116,55 @@ export function GoogleMapComponent({ kmlUrls, isLoading, selectedLoteId, onLoteS
         }
 
         // IMPORTANTE: O Google Maps KmlLayer precisa de uma URL pública acessível
-        // Se a URL já for pública (https://), usar diretamente
-        // O Google Maps consegue acessar URLs públicas mesmo com CORS
-        const finalUrl: string = 
-          kmlUrl.startsWith("https://") || kmlUrl.startsWith("http://")
-            ? kmlUrl // URL pública - usar diretamente
-            : `/api/kml?url=${encodeURIComponent(kmlUrl)}&t=${Date.now()}` // URL local - usar proxy
+        // Estratégia:
+        // 1. URLs HTTPS públicas → usar diretamente
+        // 2. URLs /api/kml/public → usar diretamente (rota serve do public)
+        // 3. URLs localhost ou HTTP → usar proxy (/api/kml)
+        // 4. URLs relativas → usar proxy
+        const isLocalhost = kmlUrl.includes("localhost") || kmlUrl.includes("127.0.0.1")
+        const isPublicHttps = kmlUrl.startsWith("https://") && !isLocalhost
+        const isPublicApiRoute = kmlUrl.includes("/api/kml/public")
         
-        if (kmlUrl.startsWith("https://") || kmlUrl.startsWith("http://")) {
-          console.log("📥 Usando URL pública diretamente:", finalUrl)
+        let finalUrl: string
+        if (isPublicHttps) {
+          // URL HTTPS pública - usar diretamente
+          finalUrl = kmlUrl
+          console.log("📥 Usando URL HTTPS pública diretamente:", finalUrl)
+        } else if (isPublicApiRoute) {
+          // URL da rota /api/kml/public - extrair path e usar proxy diretamente
+          // Isso evita problemas com localhost no Google Maps
+          try {
+            const urlObj = new URL(kmlUrl, typeof window !== "undefined" ? window.location.origin : "http://localhost:3000")
+            const path = urlObj.searchParams.get("path")
+            if (path) {
+              // Usar path diretamente no proxy (mais eficiente e funciona em localhost)
+              const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
+              finalUrl = `${origin}/api/kml?path=${encodeURIComponent(path)}&t=${Date.now()}`
+              console.log("📥 URL da rota pública - usando proxy com path direto:", finalUrl)
+            } else {
+              // Fallback: usar URL completa
+              const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
+              finalUrl = `${origin}/api/kml?url=${encodeURIComponent(kmlUrl)}&t=${Date.now()}`
+              console.log("📥 Rota pública sem path - usando proxy com URL:", finalUrl)
+            }
+          } catch (error) {
+            // Se não conseguir parsear, usar URL completa
+            const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
+            finalUrl = `${origin}/api/kml?url=${encodeURIComponent(kmlUrl)}&t=${Date.now()}`
+            console.log("📥 Erro ao parsear - usando proxy com URL:", finalUrl)
+          }
         } else {
-          console.log("📥 Usando proxy para URL local:", finalUrl)
-          console.warn("⚠️ URLs locais podem não funcionar com Google Maps KmlLayer")
+          // URL local ou HTTP - usar proxy com URL absoluta
+          const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000"
+          finalUrl = `${origin}/api/kml?url=${encodeURIComponent(kmlUrl)}&t=${Date.now()}`
+          console.log("📥 URL local/HTTP - usando proxy:", finalUrl)
+          if (isLocalhost) {
+            console.warn("⚠️ ATENÇÃO: Google Maps não consegue acessar URLs localhost por questões de segurança.")
+            console.warn("💡 Para testar localmente, você pode:")
+            console.warn("   1. Usar um túnel (ngrok, localtunnel) para expor localhost como URL pública")
+            console.warn("   2. Testar diretamente em produção (Render)")
+            console.warn("   3. O mapa funcionará normalmente em produção com URLs HTTPS")
+          }
         }
 
         console.log("📎 URL final para KML layer:", finalUrl)
@@ -138,15 +184,29 @@ export function GoogleMapComponent({ kmlUrls, isLoading, selectedLoteId, onLoteS
         // Handle KML layer load
         kmlLayer.addListener("status_changed", () => {
           const status = kmlLayer.getStatus()
-          console.log("📊 Status do KML:", kmlUrl, status)
+          const statusName = google.maps.KmlLayerStatus[status] || "UNKNOWN"
+          console.log("📊 Status do KML:", kmlUrl, statusName, `(${status})`)
           
           if (status === google.maps.KmlLayerStatus.OK) {
             console.log("✅ KML carregado com sucesso:", kmlUrl)
             
             // Verificar se o layer está realmente no mapa
             if (kmlLayer.getMap() === null) {
-              console.error("❌ KML Layer não está associado ao mapa!")
+              console.error("❌ KML Layer não está associado ao mapa! Reassociando...")
               kmlLayer.setMap(map)
+            }
+            
+            // Verificar se o layer tem features
+            const defaultViewport = kmlLayer.getDefaultViewport()
+            if (defaultViewport) {
+              console.log("📍 KML tem viewport válido:", {
+                north: defaultViewport.getNorthEast().lat(),
+                south: defaultViewport.getSouthWest().lat(),
+                east: defaultViewport.getNorthEast().lng(),
+                west: defaultViewport.getSouthWest().lng(),
+              })
+            } else {
+              console.warn("⚠️ KML não tem viewport definido")
             }
             
             loadedCount++
@@ -175,31 +235,48 @@ export function GoogleMapComponent({ kmlUrls, isLoading, selectedLoteId, onLoteS
                     map.fitBounds(allBounds, { padding: 50 })
                     console.log("🔄 Viewport ajustado para múltiplos KMLs")
                   }, 500)
+                } else {
+                  console.warn("⚠️ Nenhum KML tem viewport válido - usando zoom padrão")
                 }
               }, 800)
             }
           } else if (status === google.maps.KmlLayerStatus.ERROR) {
-            console.error("❌ Erro ao carregar KML:", kmlUrl, status)
+            console.error("❌ Erro genérico ao carregar KML:", kmlUrl, statusName)
             loadedCount++ // Contar como carregado para não travar
           } else if (status === google.maps.KmlLayerStatus.LOADING) {
             console.log("⏳ KML ainda carregando...", kmlUrl)
           } else if (status === google.maps.KmlLayerStatus.DOCUMENT_NOT_FOUND) {
-            console.error("❌ Documento KML não encontrado:", kmlUrl)
+            console.error("❌ Documento KML não encontrado (404):", kmlUrl)
+            console.error("   Verifique se a URL está acessível publicamente")
             loadedCount++
           } else if (status === google.maps.KmlLayerStatus.FETCH_ERROR) {
-            console.error("❌ Erro ao buscar KML:", kmlUrl)
+            console.error("❌ Erro ao buscar KML (CORS/Network):", kmlUrl)
+            console.error("   A URL pode não estar acessível ou ter problemas de CORS")
             loadedCount++
           } else if (status === google.maps.KmlLayerStatus.INVALID_DOCUMENT) {
-            console.error("❌ Documento KML inválido:", kmlUrl)
+            console.error("❌ Documento KML inválido (formato incorreto):", kmlUrl)
             loadedCount++
           } else if (status === google.maps.KmlLayerStatus.INVALID_REQUEST) {
-            console.error("❌ Requisição inválida:", kmlUrl)
+            console.error("❌ Requisição inválida (URL malformada ou não acessível):", kmlUrl)
+            const isLocalhostUrl = kmlUrl.includes("localhost") || kmlUrl.includes("127.0.0.1")
+            if (isLocalhostUrl) {
+              console.error("   ⚠️ LIMITAÇÃO DO GOOGLE MAPS: URLs localhost não são acessíveis pelo Google Maps API")
+              console.error("   💡 SOLUÇÕES:")
+              console.error("      1. Teste em produção (Render) - funcionará normalmente com HTTPS")
+              console.error("      2. Use um túnel (ngrok: npx ngrok http 3000) para expor localhost")
+              console.error("      3. O mapa funcionará automaticamente em produção com URLs HTTPS")
+            } else {
+              console.error("   Verifique se a URL está acessível publicamente e tem headers CORS corretos")
+            }
             loadedCount++
           } else if (status === google.maps.KmlLayerStatus.LIMITS_EXCEEDED) {
-            console.error("❌ Limites excedidos:", kmlUrl)
+            console.error("❌ Limites excedidos (muitas requisições):", kmlUrl)
             loadedCount++
           } else if (status === google.maps.KmlLayerStatus.TIMED_OUT) {
             console.error("❌ Timeout ao carregar KML:", kmlUrl)
+            loadedCount++
+          } else {
+            console.warn("⚠️ Status desconhecido do KML:", status, statusName, kmlUrl)
             loadedCount++
           }
         })
@@ -250,6 +327,13 @@ export function GoogleMapComponent({ kmlUrls, isLoading, selectedLoteId, onLoteS
     }
   }, [map, kmlUrls, isLoaded, isLoading, handleLoteSelect])
 
+  // Log de erros de carregamento
+  useEffect(() => {
+    if (loadError) {
+      console.error("❌ Erro ao carregar Google Maps:", loadError)
+    }
+  }, [loadError])
+
   if (loadError) {
     return (
       <Paper
@@ -268,12 +352,17 @@ export function GoogleMapComponent({ kmlUrls, isLoading, selectedLoteId, onLoteS
         }}
       >
         <Box sx={{ textAlign: "center", p: 3 }}>
-          <Box sx={{ color: "error.main", mb: 2 }}>
+          <Box sx={{ color: "error.main", mb: 2, fontWeight: 600 }}>
             Erro ao carregar Google Maps
           </Box>
-          <Box sx={{ color: "text.secondary", fontSize: "0.875rem" }}>
+          <Box sx={{ color: "text.secondary", fontSize: "0.875rem", mb: 2 }}>
             {loadError.message || "Verifique se a API key do Google Maps está configurada"}
           </Box>
+          {!apiKey && (
+            <Box sx={{ color: "warning.main", fontSize: "0.75rem" }}>
+              ⚠️ NEXT_PUBLIC_GOOGLE_MAPS_API_KEY não encontrada no .env
+            </Box>
+          )}
         </Box>
       </Paper>
     )
